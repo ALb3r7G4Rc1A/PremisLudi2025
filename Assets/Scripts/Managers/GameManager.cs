@@ -15,19 +15,20 @@ public class GameManager : MonoBehaviour
 
 
     private int word;
-    private int[] eazyWordsTaken;
-    private int[] mediumWordsTaken;
-    private int[] hardWordsTaken;
+    public int[] eazyWordsTaken = new int[15];
+    private int[] mediumWordsTaken = new int[10];
+    private int[] hardWordsTaken = new int[5];
     private bool isWordTaken;
     // Start is called before the first frame update
     void Start()
     {
+        actualWords = new WordsClass[30];
         for (int i = 0; i < 15; i++)
         {
             isWordTaken = true;
             while (isWordTaken)
             {
-                word = Random.Range(0, 120);
+                word = Random.Range(0, 117);
                 isWordTaken = false;
                 for (int x = 0; x < i; x++)
                 {
@@ -36,38 +37,41 @@ public class GameManager : MonoBehaviour
             }
             eazyWordsTaken[i] = word;
             actualWords[i] = wordsList.eazy[word];
+            Debug.Log(wordsList.eazy[word].ToString());
         }
 
-        for (int i = 15; i < 25; i++)
+        for (int i = 0; i < 10; i++)
         {
             isWordTaken = true;
             while (isWordTaken)
             {
-                word = Random.Range(0, 60);
+                word = Random.Range(0, 58);
                 isWordTaken = false;
-                for (int x = 15; x < i; x++)
+                for (int x = 0; x < i; x++)
                 {
                     if (word == mediumWordsTaken[x]) isWordTaken = true;
                 }
             }
             mediumWordsTaken[i] = word;
-            actualWords[i] = wordsList.medium[word];
+            actualWords[i + 15] = wordsList.medium[word];
+             Debug.Log(wordsList.medium[word].ToString());
         }
 
-        for (int i = 25; i < 30; i++)
+        for (int i = 0; i < 5; i++)
         {
             isWordTaken = true;
             while (isWordTaken)
             {
-                word = Random.Range(0, 20);
+                word = Random.Range(0, 30);
                 isWordTaken = false;
-                for (int x = 25; x < i; x++)
+                for (int x = 0; x < i; x++)
                 {
                     if (word == hardWordsTaken[x]) isWordTaken = true;
                 }
             }
             hardWordsTaken[i] = word;
-            actualWords[i] = wordsList.hard[word];
+            actualWords[i + 25] = wordsList.hard[word];
+             Debug.Log(wordsList.hard[word].ToString());
         }
     }
 

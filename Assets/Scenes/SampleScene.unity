@@ -132,6 +132,7 @@ GameObject:
   m_Component:
   - component: {fileID: 336720133}
   - component: {fileID: 336720134}
+  - component: {fileID: 336720135}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -169,8 +170,24 @@ MonoBehaviour:
   spawner1: {fileID: 0}
   spawner2: {fileID: 0}
   spawner3: {fileID: 0}
-  wordsList: {fileID: 0}
+  wordsList: {fileID: 336720135}
   actualWords: []
+  eazyWordsTaken: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+--- !u!114 &336720135
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 336720132}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4afc55435efe4f498d85481b4417165, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eazy: []
+  medium: []
+  hard: []
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
