@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class GameManager : MonoBehaviour
     [Header("ActualWords")]
     public WordsClass[] actualWords;
 
+
+    public TMP_Text provaParaula;
 
 
     private int word;
@@ -54,7 +57,7 @@ public class GameManager : MonoBehaviour
             }
             mediumWordsTaken[i] = word;
             actualWords[i + 15] = wordsList.medium[word];
-             Debug.Log(wordsList.medium[word].ToString());
+            Debug.Log(wordsList.medium[word].ToString());
         }
 
         for (int i = 0; i < 5; i++)
@@ -71,8 +74,11 @@ public class GameManager : MonoBehaviour
             }
             hardWordsTaken[i] = word;
             actualWords[i + 25] = wordsList.hard[word];
-             Debug.Log(wordsList.hard[word].ToString());
+            Debug.Log(wordsList.hard[word].ToString());
         }
+        //només es per comprovar q es vegin les paraules bé
+        provaParaula.text = actualWords[0].basic; // Mostra la paraula
+        Debug.Log("Primera paraula: " + actualWords[0].basic);
     }
 
     // Update is called once per frame
