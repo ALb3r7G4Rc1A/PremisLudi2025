@@ -194,7 +194,7 @@ public class WordsList : MonoBehaviour
             //new WordsClass("angúnia",   "an<b><u>gú</u></b>nia",       "angùnia",      "angunia",     "angúnia"),
             new WordsClass("sèrie",     "<b><u>se</u></b>rie",         "sèrie",        "serie",       "série"),
             new WordsClass("pèrdua",    "<b><u>per</u></b>dua",        "pèrdua",       "perdua",      "pérdua"),
-            new WordsClass("aquàrium",  "a<b><u>quà</u></b>rium",      "aquàrium",     "aquarium",    "aquárium"),
+            new WordsClass("aquàrium",  "a<b><u>qua</u></b>rium",      "aquàrium",     "aquarium",    "aquárium"),
             new WordsClass("àrea",      "<b><u>a</u></b>rea",          "àrea",         "area",        "área"),
             new WordsClass("mocador",   "moca<b><u>dor</u></b>",       "mocadòr",      "mocador",     "mocadór")
         };
@@ -205,7 +205,7 @@ public class WordsList : MonoBehaviour
             new WordsClass("monòton",   "mo<b><u>no</u></b>ton",    "monòton",    "monoton",    "monóton"),
             new WordsClass("foren",     "<b><u>fo</u></b>ren",      "fòren",      "foren",      "fóren"),
             new WordsClass("túnel",     "<b><u>tu</u></b>nel",      "túnèl",      "tunel",      "túnel"),
-            new WordsClass("brúixola",  "<b><u>brui</u></b>xola",   "brùixóla",   "bruixola",   "brúixola"),
+            new WordsClass("brúixola",  "<b><u>brui</u></b>xola",   "brùixola",   "bruixola",   "brúixola"),
             new WordsClass("àrbitre",   "<b><u>ar</u></b>bitre",    "àrbitre",    "arbitre",    "árbitre"),
             new WordsClass("sòlid",     "<b><u>so</u></b>lid",      "sòlid",      "solid",      "sólid"),
             new WordsClass("actualment","actual<b><u>ment</u></b>", "actualmènt", "actualment", "actualmént"),
