@@ -1,0 +1,9 @@
+<Gesture Name="cercle" Subject="test">
+  <Stroke>
+    <Point X="50" Y="0"/>
+    <Point X="100" Y="50"/>
+    <Point X="50" Y="100"/>
+    <Point X="0" Y="50"/>
+    <Point X="50" Y="0"/>
+  </Stroke>
+</Gesture>
