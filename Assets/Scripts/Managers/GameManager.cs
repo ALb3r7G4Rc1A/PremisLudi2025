@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     [Header("ActualWords")]
     public List<WordsClass> actualWords;
     public List<GameObject> wordsInOrder;
+    public List<WordsClass> missedWords;
 
 
     public TMP_Text provaParaula;
@@ -22,17 +23,21 @@ public class GameManager : MonoBehaviour
     public TMP_Text text;
 
     public GameObject textPrefab;
-
+    private GameObject selectedWord;
     public int speed;
 
     private int randomSpawner;
     private int randomWord;
+    private Transform selectedSpawner;
 
     private int word;
     public int[] eazyWordsTaken = new int[15];
     private int[] mediumWordsTaken = new int[10];
     private int[] hardWordsTaken = new int[5];
     private bool isWordTaken;
+
+    private float time;
+    public float timer;
     // Start is called before the first frame update
     void Start()
     {
@@ -95,36 +100,33 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-        if (Input.GetKeyDown(KeyCode.Space) && actualWords.Count > 0)
+        if (time < 0 && actualWords.Count > 0)
         {
-            randomSpawner = Random.Range(0, 3);
+            time = timer;
             randomWord = Random.Range(0, actualWords.Count);
-            if (randomSpawner == 0)
-            {
-                GameObject a = Instantiate(textPrefab, spawner1);
-                a.GetComponent<TMP_Text>().text = actualWords[randomWord].basic;
-                a.GetComponent<SingleWordScript>().wordsClass = actualWords[randomWord];
-                wordsInOrder.Add(a);
-            }
-            else if (randomSpawner == 1)
-            {
-                GameObject a = Instantiate(textPrefab, spawner2);
-                a.GetComponent<TMP_Text>().text = actualWords[randomWord].basic;
-                a.GetComponent<SingleWordScript>().wordsClass = actualWords[randomWord];
-                wordsInOrder.Add(a);
-            }
-            else
-            {
-                GameObject a = Instantiate(textPrefab, spawner3);
-                a.GetComponent<TMP_Text>().text = actualWords[randomWord].basic;
-                a.GetComponent<SingleWordScript>().wordsClass = actualWords[randomWord];
-                wordsInOrder.Add(a);
-            }
+
+            randomSpawner = Random.Range(0, 3);
+            selectedSpawner = randomSpawner switch { 0 => spawner1, 1 => spawner2, _ => spawner3 };
+
+            selectedWord = Instantiate(textPrefab, selectedSpawner);
+            selectedWord.GetComponent<TMP_Text>().text = actualWords[randomWord].basic;
+            selectedWord.GetComponent<SingleWordScript>().wordsClass = actualWords[randomWord];
+
+            wordsInOrder.Add(selectedWord);
             actualWords.RemoveAt(randomWord);
         }
+        else { time -= Time.deltaTime; }
 
-        if (Input.GetKeyDown(KeyCode.A) && wordsInOrder.Count > 0)
+        if (actualWords.Count == 0 && missedWords.Count > 0)
+        {
+            actualWords = missedWords;
+            missedWords = new List<WordsClass>();
+        }
+    }
+
+    public void OptionPress(int option)
+    {
+        if (option == 1 && wordsInOrder.Count > 0)
         {
             wordsInOrder[0].GetComponent<TMP_Text>().text = wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass.option1;
             if (wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass.isCorrectAccent(1))
@@ -137,12 +139,12 @@ public class GameManager : MonoBehaviour
             {
                 wordsInOrder[0].GetComponent<TMP_Text>().color = Color.red;
                 wordsInOrder[0].GetComponent<SingleWordScript>().isRemoved = true;
-                //actualWords.Add(actualWords[0]);
+                missedWords.Add(wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass);
                 wordsInOrder.RemoveAt(0);
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.S) && wordsInOrder.Count > 0)
+        if (option == 2 && wordsInOrder.Count > 0)
         {
             wordsInOrder[0].GetComponent<TMP_Text>().text = wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass.option2;
             if (wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass.isCorrectAccent(2))
@@ -154,13 +156,13 @@ public class GameManager : MonoBehaviour
             else
             {
                 wordsInOrder[0].GetComponent<TMP_Text>().color = Color.red;
-                //actualWords.Add(actualWords[0]);
+                missedWords.Add(wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass);
                 wordsInOrder[0].GetComponent<SingleWordScript>().isRemoved = true;
                 wordsInOrder.RemoveAt(0);
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.D) && wordsInOrder.Count > 0) 
+        if (option == 3 && wordsInOrder.Count > 0)
         {
             wordsInOrder[0].GetComponent<TMP_Text>().text = wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass.option3;
             if (wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass.isCorrectAccent(3))
@@ -172,7 +174,7 @@ public class GameManager : MonoBehaviour
             else
             {
                 wordsInOrder[0].GetComponent<TMP_Text>().color = Color.red;
-                //wordsInOrder.Add(actualWords[0]);
+                missedWords.Add(wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass);
                 wordsInOrder[0].GetComponent<SingleWordScript>().isRemoved = true;
                 wordsInOrder.RemoveAt(0);
             }
@@ -181,6 +183,7 @@ public class GameManager : MonoBehaviour
 
     public void Remove0()
     {
+        missedWords.Add(wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass);
         wordsInOrder.RemoveAt(0);
     }
 }
