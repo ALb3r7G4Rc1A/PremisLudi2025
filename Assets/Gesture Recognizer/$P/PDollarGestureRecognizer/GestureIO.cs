@@ -1,41 +1,47 @@
 using System.IO;
 using System.Collections.Generic;
 using System.Xml;
-using PDollarGestureRecognizer;
 
-namespace PDollarDemo
+namespace PDollarGestureRecognizer
 {
     public class GestureIO
     {
         /// <summary>
-        /// Reads a multistroke gesture from an XML file
+        /// Llegeix un gest multitraç des d’un fitxer XML.
         /// </summary>
-        /// <param name="fileName"></param>
-        /// <returns></returns>
-        public static Gesture ReadGesture(string fileName)
+        /// <param name="fileName">Ruta del fitxer XML</param>
+        /// <returns>Objecte Gesture amb els punts i el nom</returns>
+        public static Gesture ReadGestureFromFile(string fileName)
         {
             List<Point> points = new List<Point>();
             XmlTextReader xmlReader = null;
             int currentStrokeIndex = -1;
             string gestureName = "";
+
             try
             {
                 xmlReader = new XmlTextReader(File.OpenText(fileName));
+
                 while (xmlReader.Read())
                 {
                     if (xmlReader.NodeType != XmlNodeType.Element) continue;
+
                     switch (xmlReader.Name)
                     {
                         case "Gesture":
                             gestureName = xmlReader["Name"];
-                            if (gestureName.Contains("~")) // '~' character is specific to the naming convention of the MMG set
+
+                            // Neteja de noms segons convencions del dataset MMG
+                            if (gestureName.Contains("~"))
                                 gestureName = gestureName.Substring(0, gestureName.LastIndexOf('~'));
-                            if (gestureName.Contains("_")) // '_' character is specific to the naming convention of the MMG set
+                            if (gestureName.Contains("_"))
                                 gestureName = gestureName.Replace('_', ' ');
                             break;
+
                         case "Stroke":
                             currentStrokeIndex++;
                             break;
+
                         case "Point":
                             points.Add(new Point(
                                 float.Parse(xmlReader["X"]),
@@ -51,19 +57,25 @@ namespace PDollarDemo
                 if (xmlReader != null)
                     xmlReader.Close();
             }
+
             return new Gesture(points.ToArray(), gestureName);
         }
 
         /// <summary>
-        /// Writes a multistroke gesture to an XML file
+        /// Escriu un gest multitraç a un fitxer XML.
         /// </summary>
-        public static void WriteGesture(PDollarGestureRecognizer.Point[] points, string gestureName, string fileName)
+        /// <param name="points">Array de punts del gest</param>
+        /// <param name="gestureName">Nom del gest</param>
+        /// <param name="fileName">Ruta del fitxer de destí</param>
+        public static void WriteGestureToFile(Point[] points, string gestureName, string fileName)
         {
             using (StreamWriter sw = new StreamWriter(fileName))
             {
                 sw.WriteLine("<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>");
-                sw.WriteLine("<Gesture Name = \"{0}\">", gestureName);
+                sw.WriteLine("<Gesture Name=\"{0}\">", gestureName);
+
                 int currentStroke = -1;
+
                 for (int i = 0; i < points.Length; i++)
                 {
                     if (points[i].StrokeID != currentStroke)
@@ -74,10 +86,10 @@ namespace PDollarDemo
                         currentStroke = points[i].StrokeID;
                     }
 
-                    sw.WriteLine("\t\t<Point X = \"{0}\" Y = \"{1}\" T = \"0\" Pressure = \"0\" />",
-                        points[i].X, points[i].Y
-                    );
+                    sw.WriteLine("\t\t<Point X=\"{0}\" Y=\"{1}\" T=\"0\" Pressure=\"0\" />",
+                        points[i].X, points[i].Y);
                 }
+
                 sw.WriteLine("\t</Stroke>");
                 sw.WriteLine("</Gesture>");
             }

@@ -59,6 +59,7 @@
 **/
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace PDollarGestureRecognizer
 {
@@ -75,10 +76,11 @@ namespace PDollarGestureRecognizer
         /// <param name="candidate"></param>
         /// <param name="trainingSet"></param>
         /// <returns></returns>
-        public static string Classify(Gesture candidate, Gesture[] trainingSet)
+        public static Result Classify(Gesture candidate, Gesture[] trainingSet)
         {
             float minDistance = float.MaxValue;
             string gestureClass = "";
+
             foreach (Gesture template in trainingSet)
             {
                 float dist = GreedyCloudMatch(candidate.Points, template.Points);
@@ -88,8 +90,14 @@ namespace PDollarGestureRecognizer
                     gestureClass = template.Name;
                 }
             }
-            return gestureClass;
+
+            // Convertir la distància en puntuació (Score entre 0 i 1)
+            // Màxima distància possible = 2 (segons PDollarRecognizer)
+            float score = Mathf.Max(0f, 1f - minDistance / 2f);
+
+            return new Result(gestureClass, score);
         }
+
 
         /// <summary>
         /// Implements greedy search for a minimum-distance matching between two point clouds

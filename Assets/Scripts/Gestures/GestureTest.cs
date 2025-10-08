@@ -1,48 +1,116 @@
 using UnityEngine;
-using System.Collections.Generic;
 using PDollarGestureRecognizer;
-using PDollarDemo; // Namespace del reconeixedor
+using System.Collections.Generic;
+using System.IO;
 
+[RequireComponent(typeof(LineRenderer))]
 public class GestureTest : MonoBehaviour
 {
-    public LineRenderer lineRenderer; // Assigna el LineRenderer al GameObject
-    private List<Vector3> positions = new List<Vector3>();
     private List<Point> points = new List<Point>();
     private Gesture[] trainingSet;
-    private int strokeId = -1;
+    private bool isDrawing = false;
+
+    private LineRenderer lineRenderer;
+    private Color originalColor;
+
+    [Header("Ajustos del traç")]
+    public Color lineColor = new Color(0.1f, 0.8f, 1f);  // Blau brillant
+    public float lineWidth = 0.15f;
+    public float recognitionThreshold = 0.5f; // Llindar de puntuació
+
+    private string recognized; // variable de classe per guardar el gest reconegut
 
     void Start()
     {
-        // Carrega els gestos d'entrenament des de Resources/
-        trainingSet = GestureIO.LoadGestures();
-        Debug.Log("Gestos carregats: " + trainingSet.Length);
+        // Inicialitzar LineRenderer
+        lineRenderer = GetComponent<LineRenderer>();
+        lineRenderer.positionCount = 0;
+        lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
+        lineRenderer.startWidth = lineWidth;
+        lineRenderer.endWidth = lineWidth;
+        lineRenderer.numCapVertices = 10;
+
+        originalColor = lineColor;
+        lineRenderer.startColor = originalColor;
+        lineRenderer.endColor = originalColor;
+
+        // Carregar tots els gestos .xml del projecte
+        string[] gestureFiles = Directory.GetFiles(Application.dataPath, "*.xml", SearchOption.AllDirectories);
+        trainingSet = new Gesture[gestureFiles.Length];
+        for (int i = 0; i < gestureFiles.Length; i++)
+            trainingSet[i] = GestureIO.ReadGestureFromFile(gestureFiles[i]);
+
+        Debug.Log($"Gestos carregats: {trainingSet.Length}");
     }
 
     void Update()
     {
+        // Comença un nou dibuix
         if (Input.GetMouseButtonDown(0))
         {
-            strokeId++;
-            positions.Clear();
+            isDrawing = true;
             points.Clear();
             lineRenderer.positionCount = 0;
+            lineRenderer.startColor = originalColor;
+            lineRenderer.endColor = originalColor;
         }
 
-        if (Input.GetMouseButton(0))
+        // Dibuixar mentre es manté el clic
+        if (isDrawing && Input.GetMouseButton(0))
         {
-            Vector3 mousePos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f));
-            positions.Add(mousePos);
-            points.Add(new Point(mousePos.x, -mousePos.y, strokeId));
-            lineRenderer.positionCount = positions.Count;
-            lineRenderer.SetPositions(positions.ToArray());
+            Vector2 mousePos = Input.mousePosition;
+            points.Add(new Point(mousePos.x, -mousePos.y, 0));
+
+            Vector3 worldPos = Camera.main.ScreenToWorldPoint(new Vector3(mousePos.x, mousePos.y, 10f));
+            lineRenderer.positionCount++;
+            lineRenderer.SetPosition(lineRenderer.positionCount - 1, worldPos);
         }
 
-        if (Input.GetMouseButtonUp(0))
+        // Quan deixem anar el clic, reconeixem el gest
+        if (isDrawing && Input.GetMouseButtonUp(0))
         {
+            isDrawing = false;
             Gesture candidate = new Gesture(points.ToArray());
             Result result = PointCloudRecognizer.Classify(candidate, trainingSet);
 
-            Debug.Log($"Gest reconegut: {result.GestureClass} ({result.Score * 100f:F1}% confiança)");
+            recognized = result.GestureClass;
+
+            if (result.Score >= recognitionThreshold)
+            {
+                Debug.Log($"✨ Gest reconegut: {recognized} (Score: {result.Score:F2})");
+            }
+            else
+            {
+                Debug.Log($"❌ No s'ha reconegut cap figura. (Score: {result.Score:F2})");
+                recognized = "";
+            }
+
+            // Comença el fade del traç
+            StartCoroutine(FadeLine());
         }
+    }
+
+    //  Fa que el traç es dissolgui suaument després del dibuix
+    private System.Collections.IEnumerator FadeLine()
+    {
+        float duration = 0.5f;
+        float elapsed = 0f;
+        Color startFadeColor = lineRenderer.startColor;
+
+        while (elapsed < duration)
+        {
+            elapsed += Time.deltaTime;
+            float t = 1f - (elapsed / duration);
+            Color faded = startFadeColor;
+            faded.a = t;
+            lineRenderer.startColor = faded;
+            lineRenderer.endColor = faded;
+            yield return null;
+        }
+
+        // Reiniciar el LineRenderer per al següent dibuix
+        lineRenderer.positionCount = 0;
+        lineRenderer.startColor = originalColor;
+        lineRenderer.endColor = originalColor;
     }
 }
