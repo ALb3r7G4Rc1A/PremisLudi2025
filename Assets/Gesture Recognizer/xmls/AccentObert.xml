@@ -1,0 +1,9 @@
+<Gesture Name="accent_obert" Subject="test">
+  <Stroke>
+    <Point X="0" Y="0"/>
+    <Point X="20" Y="20"/>
+    <Point X="40" Y="40"/>
+    <Point X="60" Y="60"/>
+    <Point X="80" Y="80"/>
+  </Stroke>
+</Gesture>

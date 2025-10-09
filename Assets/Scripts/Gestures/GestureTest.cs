@@ -14,11 +14,14 @@ public class GestureTest : MonoBehaviour
     private Color originalColor;
 
     [Header("Ajustos del traç")]
-    public Color lineColor = new Color(0.1f, 0.8f, 1f);  // Blau brillant
+    public Color lineColor;
     public float lineWidth = 0.15f;
-    public float recognitionThreshold = 0.5f; // Llindar de puntuació
+    public float recognitionThreshold = 0.5f; //Marge de detecció de la figura
 
-    private string recognized; // variable de classe per guardar el gest reconegut
+    [Header("Referència al GameManager")]
+    public GameManager gameManager;
+
+    private string recognized;
 
     void Start()
     {
@@ -77,20 +80,47 @@ public class GestureTest : MonoBehaviour
 
             if (result.Score >= recognitionThreshold)
             {
-                Debug.Log($"✨ Gest reconegut: {recognized} (Score: {result.Score:F2})");
+                Debug.Log($"Gest reconegut: {recognized} (Score: {result.Score:F2})");
+
+                // Cridar funció del GameManager segons el gest reconegut
+                if (gameManager != null)
+                {
+                    switch (recognized)
+                    {
+                        case "accent obert":
+                            gameManager.OptionPress(1);
+                            break;
+
+                        case "cercle":
+                            gameManager.OptionPress(2);
+                            break;
+
+                        case "accent tancat":
+                            gameManager.OptionPress(3);
+                            break;
+
+                        default:
+                            Debug.Log("No hi ha acció assignada a aquest gest.");
+                            break;
+                    }
+                }
+                else
+                {
+                    Debug.LogWarning("No s'ha assignat cap GameManager al GestureTest.");
+                }
             }
             else
             {
-                Debug.Log($"❌ No s'ha reconegut cap figura. (Score: {result.Score:F2})");
+                Debug.Log($"No s'ha reconegut cap figura. (Score: {result.Score:F2})");
                 recognized = "";
             }
 
-            // Comença el fade del traç
+            // Tota la vaina del fade del traç
             StartCoroutine(FadeLine());
         }
     }
 
-    //  Fa que el traç es dissolgui suaument després del dibuix
+    // Fa que el traç es dissolgui suaument després del dibuix
     private System.Collections.IEnumerator FadeLine()
     {
         float duration = 0.5f;

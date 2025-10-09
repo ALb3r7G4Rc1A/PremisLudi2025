@@ -147,7 +147,7 @@ public class WordsList : MonoBehaviour
             new WordsClass("pàgina",    "<b><u>pa</u></b>gina",     "pàgina",     "pagina",     "página"),
             new WordsClass("màgic",     "<b><u>ma</u></b>gic",      "màgic",      "magic",      "mágic"),
             new WordsClass("plàstic",   "<b><u>plas</u></b>tic",    "plàstic",    "plastic",    "plástic"),
-            new WordsClass("càmera",    "<b><u>ca</u></b>mera",     "càmara",     "camera",     "cámera"),
+            new WordsClass("càmera",    "<b><u>ca</u></b>mera",     "càmera",     "camera",     "cámera"),
             new WordsClass("àngel",     "<b><u>an</u></b>gel",      "àngel",      "angel",      "ángel"),
             new WordsClass("còmic",     "<b><u>co</u></b>mic",      "còmic",      "comic",      "cómic"),
             new WordsClass("música",    "<b><u>mu</u></b>sica",     "mùsica",     "musica",     "música"),
@@ -227,7 +227,7 @@ public class WordsList : MonoBehaviour
             new WordsClass("llàgrima",     "<b><u>lla</u></b>grima",     "llàgrima",     "llagrima",     "llágrima"),
             new WordsClass("física",       "<b><u>fi</u></b>sica",       "fìsica",       "fisica",       "física"),
             new WordsClass("òptica",       "<b><u>op</u></b>tica",       "òptica",       "optica",       "óptica"),
-            new WordsClass("família",      "fa<b><u>mi</u></b>lia",      "famìlia",      "familia",      "famíla"),
+            new WordsClass("família",      "fa<b><u>mi</u></b>lia",      "famìlia",      "familia",      "família"),
             new WordsClass("electrònica",  "elec<b><u>tro</u></b>nica",  "electrònica",  "electronica",  "electrónica"),
             new WordsClass("catifa",       "ca<b><u>ti</u></b>fa",       "catìfa",       "catifa",       "catífa"),
             new WordsClass("guitarra",     "gui<b><u>ta</u></b>rra",     "guitàrra",     "guitarra",     "guitárra")

@@ -1580,6 +1580,7 @@ MonoBehaviour:
   lineColor: {r: 1, g: 0.04228007, b: 0, a: 1}
   lineWidth: 0.15
   recognitionThreshold: 0.5
+  gameManager: {fileID: 336720134}
 --- !u!120 &1952528110
 LineRenderer:
   serializedVersion: 2
@@ -1693,7 +1694,7 @@ Transform:
   m_GameObject: {fileID: 1952528108}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1040.392, y: 742.32855, z: -8.366732}
+  m_LocalPosition: {x: 1052, y: 745, z: -8.366732}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
