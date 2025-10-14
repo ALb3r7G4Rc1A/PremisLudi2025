@@ -30,7 +30,8 @@ public class WordsList : MonoBehaviour
             new WordsClass("estómac",   "es<b><u>to</u></b>mac",    "estòmac",    "estomac",    "estómac"),
             new WordsClass("fotògraf",  "fo<b><u>to</u></b>graf",   "fotògraf",   "fotograf",   "fotógraf"),
             new WordsClass("rodó",      "ro<b><u>do</u></b>",       "rodò",       "rodo",       "rodó"),
-            new WordsClass("palau",     "<b><u>pa</u></b>lau",      "pàlau",      "palau",      "pálau"),
+            //new WordsClass("palau",     "pa<b><u>lau</u></b>",      "palàu",      "palau",      "paláu"),
+            new WordsClass("galeta",    "ga<b><u>le</u></b>ta",     "galèta",     "galeta",     "galéta"),
             new WordsClass("cadira",    "ca<b><u>di</u></b>ra",     "cadìra",     "cadira",     "cadíra"),
             new WordsClass("córrer",    "<b><u>cor</u></b>rer",     "còrrer",     "correr",     "córrer"),
             new WordsClass("ratolí",    "rato<b><u>li</u></b>",     "ratolì",     "ratoli",     "ratolí"),
@@ -136,7 +137,7 @@ public class WordsList : MonoBehaviour
 
         Debug.Log(eazy[1].option3);
         medium = new WordsClass[] {
-            new WordsClass("créixer",   "creixer",                  "crèixer",    "creixer",    "créixer"),
+            new WordsClass("créixer",   "<b><u>crei</u></b>xer",    "crèixer",    "creixer",    "créixer"),
             new WordsClass("gairebé",   "gaire<b><u>be</u></b>",    "gairebè",    "gairabe",    "gairebé"),
             new WordsClass("caminaran", "camina<b><u>ran</u></b>",  "caminaràn",  "caminaran",  "caminarán"),
             new WordsClass("pòster",    "<b><u>pos</u></b>ter",     "pòster",     "poster",     "póster"),
@@ -159,7 +160,7 @@ public class WordsList : MonoBehaviour
             new WordsClass("paret",     "pa<b><u>ret</u></b>",      "parèt",      "paret",      "parét"),
             new WordsClass("botiga",    "bo<b><u>ti</u></b>ga",     "botìga",     "botiga",     "botíga"),
             new WordsClass("petó",      "pe<b><u>to</u></b>",       "petò",       "peto",       "petó"),
-            new WordsClass("àrbre",     "<b><u>ar</u></b>bre",      "àrbre",      "arbre",      "árbre"),
+            new WordsClass("arbre",     "<b><u>ar</u></b>bre",      "àrbre",      "arbre",      "árbre"),
             new WordsClass("avi",       "<b><u>a</u></b>vi",        "àvi",        "avi",        "ávi"),
             new WordsClass("cotxe",     "<b><u>cot</u></b>xe",      "còtxe",      "cotxe",      "cótxe"),
             new WordsClass("fàbrica",   "<b><u>fa</u></b>brica",    "fàbrica",    "fabrica",    "fábrica"),
