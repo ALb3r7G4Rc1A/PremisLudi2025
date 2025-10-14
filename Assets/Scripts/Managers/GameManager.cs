@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using System.Linq;
 using System.Collections.Generic;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -24,7 +25,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject textPrefab;
     private GameObject selectedWord;
-    public int speed;
+    public float speed;
 
     private int randomSpawner;
     private int randomWord;
@@ -37,7 +38,15 @@ public class GameManager : MonoBehaviour
     private bool isWordTaken;
 
     private float time;
-    public float timer;
+    private float timer;
+    public float maxWordsOnScreen;
+
+    public Transform wordLimit;
+
+
+    [Header("Progress")]
+    public int correctWordPoints;
+    public int actualPoints;
     // Start is called before the first frame update
     void Start()
     {
@@ -47,7 +56,7 @@ public class GameManager : MonoBehaviour
             isWordTaken = true;
             while (isWordTaken)
             {
-                word = Random.Range(0, 117);
+                word = UnityEngine.Random.Range(0, 117);
                 isWordTaken = false;
                 for (int x = 0; x < i; x++)
                 {
@@ -64,7 +73,7 @@ public class GameManager : MonoBehaviour
             isWordTaken = true;
             while (isWordTaken)
             {
-                word = Random.Range(0, 58);
+                word = UnityEngine.Random.Range(0, 58);
                 isWordTaken = false;
                 for (int x = 0; x < i; x++)
                 {
@@ -81,7 +90,7 @@ public class GameManager : MonoBehaviour
             isWordTaken = true;
             while (isWordTaken)
             {
-                word = Random.Range(0, 30);
+                word = UnityEngine.Random.Range(0, 30);
                 isWordTaken = false;
                 for (int x = 0; x < i; x++)
                 {
@@ -95,6 +104,7 @@ public class GameManager : MonoBehaviour
         //només es per comprovar q es vegin les paraules bé
         //provaParaula.text = actualWords[0].basic; // Mostra la paraula
         Debug.Log("Primera paraula: " + actualWords[0].basic);
+        SetSpawnTimer();
     }
 
     // Update is called once per frame
@@ -102,10 +112,11 @@ public class GameManager : MonoBehaviour
     {
         if (time < 0 && actualWords.Count > 0)
         {
+            SetSpawnTimer();
             time = timer;
-            randomWord = Random.Range(0, actualWords.Count);
+            randomWord = UnityEngine.Random.Range(0, actualWords.Count);
 
-            randomSpawner = Random.Range(0, 3);
+            randomSpawner = UnityEngine.Random.Range(0, 3);
             selectedSpawner = randomSpawner switch { 0 => spawner1, 1 => spawner2, _ => spawner3 };
 
             selectedWord = Instantiate(textPrefab, selectedSpawner);
@@ -131,6 +142,10 @@ public class GameManager : MonoBehaviour
             wordsInOrder[0].GetComponent<TMP_Text>().text = wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass.option1;
             if (wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass.isCorrectAccent(1))
             {
+                Debug.Log("Time Alive"+Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive));
+                Debug.Log("Resta" + (correctWordPoints - Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive)));
+                Debug.Log("Multiplicador: " + (speed / 200f));
+                actualPoints += (int)((correctWordPoints - Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive)) * (speed / 200f)) + correctWordPoints;
                 wordsInOrder[0].GetComponent<TMP_Text>().color = Color.green;
                 wordsInOrder[0].GetComponent<SingleWordScript>().isRemoved = true;
                 wordsInOrder.RemoveAt(0);
@@ -149,6 +164,10 @@ public class GameManager : MonoBehaviour
             wordsInOrder[0].GetComponent<TMP_Text>().text = wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass.option2;
             if (wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass.isCorrectAccent(2))
             {
+                Debug.Log("Time Alive"+Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive));
+                Debug.Log("Resta" + (correctWordPoints - Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive)));
+                Debug.Log("Multiplicador: " + (speed / 200f));
+                actualPoints += (int)((correctWordPoints - Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive)) * (speed / 200f)) + correctWordPoints;
                 wordsInOrder[0].GetComponent<TMP_Text>().color = Color.green;
                 wordsInOrder[0].GetComponent<SingleWordScript>().isRemoved = true;
                 wordsInOrder.RemoveAt(0);
@@ -167,6 +186,10 @@ public class GameManager : MonoBehaviour
             wordsInOrder[0].GetComponent<TMP_Text>().text = wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass.option3;
             if (wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass.isCorrectAccent(3))
             {
+                Debug.Log("Time Alive"+Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive));
+                Debug.Log("Resta" + (correctWordPoints - Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive)));
+                Debug.Log("Multiplicador: " + (speed / 200f));
+                actualPoints += (int)((correctWordPoints - Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive)) * (speed / 200f)) + correctWordPoints;
                 wordsInOrder[0].GetComponent<TMP_Text>().color = Color.green;
                 wordsInOrder[0].GetComponent<SingleWordScript>().isRemoved = true;
                 wordsInOrder.RemoveAt(0);
@@ -185,5 +208,10 @@ public class GameManager : MonoBehaviour
     {
         missedWords.Add(wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass);
         wordsInOrder.RemoveAt(0);
+    }
+
+    private void SetSpawnTimer()
+    {
+        timer = Math.Abs(wordLimit.position.x - spawner1.position.x) / speed / maxWordsOnScreen;
     }
 }

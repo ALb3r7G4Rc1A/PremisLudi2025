@@ -7,6 +7,7 @@ public class SingleWordScript : MonoBehaviour
     private GameManager gameManager;
     public WordsClass wordsClass;
     public bool isRemoved;
+    public float timeAlive;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +19,7 @@ public class SingleWordScript : MonoBehaviour
     void Update()
     {
         transform.Translate(Time.deltaTime * gameManager.speed * -Vector2.right);
+        timeAlive += Time.deltaTime;
     }
 
     void OnTriggerEnter2D(Collider2D collision)

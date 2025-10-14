@@ -177,9 +177,12 @@ MonoBehaviour:
   provaParaula: {fileID: 0}
   text: {fileID: 0}
   textPrefab: {fileID: 3080829414113235301, guid: 1605b987f4a1bfc40a0f2d763a2e7fd6, type: 3}
-  speed: 500
+  speed: 200
   eazyWordsTaken: 000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
-  timer: 2
+  maxWordsOnScreen: 2
+  wordLimit: {fileID: 1101976940}
+  correctWordPoints: 10
+  actualPoints: 0
 --- !u!114 &336720135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -674,7 +677,7 @@ Transform:
   m_GameObject: {fileID: 1101976939}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -884, y: -35, z: 0}
+  m_LocalPosition: {x: -800, y: -35, z: 0}
   m_LocalScale: {x: 100, y: 1000, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
