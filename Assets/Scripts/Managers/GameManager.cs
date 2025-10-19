@@ -146,6 +146,7 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Resta" + (correctWordPoints - Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive)));
                 Debug.Log("Multiplicador: " + (speed / 200f));
                 actualPoints += (int)((correctWordPoints - Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive)) * (speed / 200f)) + correctWordPoints;
+                Debug.Log("Punts actuals: " + actualPoints);
                 wordsInOrder[0].GetComponent<TMP_Text>().color = Color.green;
                 wordsInOrder[0].GetComponent<SingleWordScript>().isRemoved = true;
                 wordsInOrder.RemoveAt(0);
@@ -168,6 +169,7 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Resta" + (correctWordPoints - Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive)));
                 Debug.Log("Multiplicador: " + (speed / 200f));
                 actualPoints += (int)((correctWordPoints - Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive)) * (speed / 200f)) + correctWordPoints;
+                Debug.Log("Punts actuals: " + actualPoints);
                 wordsInOrder[0].GetComponent<TMP_Text>().color = Color.green;
                 wordsInOrder[0].GetComponent<SingleWordScript>().isRemoved = true;
                 wordsInOrder.RemoveAt(0);
@@ -190,6 +192,7 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Resta" + (correctWordPoints - Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive)));
                 Debug.Log("Multiplicador: " + (speed / 200f));
                 actualPoints += (int)((correctWordPoints - Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive)) * (speed / 200f)) + correctWordPoints;
+                Debug.Log("Punts actuals: " + actualPoints);
                 wordsInOrder[0].GetComponent<TMP_Text>().color = Color.green;
                 wordsInOrder[0].GetComponent<SingleWordScript>().isRemoved = true;
                 wordsInOrder.RemoveAt(0);

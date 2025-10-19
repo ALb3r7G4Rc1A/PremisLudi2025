@@ -111,7 +111,7 @@ MonoBehaviour:
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
-  m_enableWordWrapping: 1
+  m_enableWordWrapping: 0
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
   m_linkedTextComponent: {fileID: 0}
@@ -149,7 +149,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f9529b7907ee1a489678d1ecacaac57, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 300
+  wordsClass:
+    correct: 
+    basic: 
+    option1: 
+    option2: 
+    option3: 
+  isRemoved: 0
+  timeAlive: 0
 --- !u!61 &7307681580677770926
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -207,9 +214,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb7b982c10a0b234dabefc7110806787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wordsClass:
-    correct: 
-    basic: 
-    option1: 
-    option2: 
-    option3: 
