@@ -110,6 +110,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        if (wordsInOrder.Count > 0)
+        {
+            Debug.Log("LERP");
+            wordsInOrder[0].GetComponent<TMP_Text>().alpha = Mathf.Lerp(wordsInOrder[0].GetComponent<TMP_Text>().alpha,1f,Time.deltaTime*4);
+        }
         if (time < 0 && actualWords.Count > 0)
         {
             SetSpawnTimer();
@@ -188,7 +194,7 @@ public class GameManager : MonoBehaviour
             wordsInOrder[0].GetComponent<TMP_Text>().text = wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass.option3;
             if (wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass.isCorrectAccent(3))
             {
-                Debug.Log("Time Alive"+Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive));
+                Debug.Log("Time Alive" + Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive));
                 Debug.Log("Resta" + (correctWordPoints - Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive)));
                 Debug.Log("Multiplicador: " + (speed / 200f));
                 actualPoints += (int)((correctWordPoints - Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive)) * (speed / 200f)) + correctWordPoints;
