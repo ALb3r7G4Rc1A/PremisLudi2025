@@ -68,8 +68,10 @@ namespace PDollarGestureRecognizer
         /// </summary>
         public static float SqrEuclideanDistance(Point a, Point b)
         {
+            if (a == null || b == null) return float.MaxValue;
             return (a.X - b.X) * (a.X - b.X) + (a.Y - b.Y) * (a.Y - b.Y);
         }
+
 
         /// <summary>
         /// Computes the Euclidean Distance between two points in 2D

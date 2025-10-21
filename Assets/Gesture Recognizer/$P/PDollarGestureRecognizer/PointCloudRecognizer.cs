@@ -129,33 +129,47 @@ namespace PDollarGestureRecognizer
         /// <param name="startIndex"></param>
         /// <returns></returns>
         private static float CloudDistance(Point[] points1, Point[] points2, int startIndex)
-        {
-            int n = points1.Length;       // the two clouds should have the same number of points by now
-            bool[] matched = new bool[n]; // matched[i] signals whether point i from the 2nd cloud has been already matched
-            Array.Clear(matched, 0, n);   // no points are matched at the beginning
+{
+    int n = points1.Length;
+    bool[] matched = new bool[n];
+    Array.Clear(matched, 0, n);
 
-            float sum = 0;  // computes the sum of distances between matched points (i.e., the distance between the two clouds)
-            int i = startIndex;
-            do
+    float sum = 0f;
+    int i = startIndex;
+
+    do
+    {
+        int index = -1;
+        float minDistance = float.MaxValue;
+
+        for (int j = 0; j < n; j++)
+        {
+            if (!matched[j])
             {
-                int index = -1;
-                float minDistance = float.MaxValue;
-                for(int j = 0; j < n; j++)
-                    if (!matched[j])
-                    {
-                        float dist = Geometry.SqrEuclideanDistance(points1[i], points2[j]);  // use squared Euclidean distance to save some processing time
-                        if (dist < minDistance)
-                        {
-                            minDistance = dist;
-                            index = j;
-                        }
-                    }
-                matched[index] = true; // point index from the 2nd cloud is matched to point i from the 1st cloud
-                float weight = 1.0f - ((i - startIndex + n) % n) / (1.0f * n);
-                sum += weight * minDistance; // weight each distance with a confidence coefficient that decreases from 1 to 0
-                i = (i + 1) % n;
-            } while (i != startIndex);
-            return sum;
+                float dist = Geometry.SqrEuclideanDistance(points1[i], points2[j]);
+                if (dist < minDistance)
+                {
+                    minDistance = dist;
+                    index = j;
+                }
+            }
         }
+
+        // ✅ Protecció: si no trobem cap punt per emparellar, parem el bucle
+        if (index == -1)
+        {
+            break; // evita l'IndexOutOfRangeException
+        }
+
+        matched[index] = true;
+
+        float weight = 1.0f - ((i - startIndex + n) % n) / (1.0f * n);
+        sum += weight * minDistance;
+        i = (i + 1) % n;
+    } while (i != startIndex);
+
+    return sum;
+}
+
     }
 }
