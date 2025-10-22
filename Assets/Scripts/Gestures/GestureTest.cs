@@ -78,7 +78,7 @@ public class GestureTest : MonoBehaviour
 
             recognized = result.GestureClass;
 
-            if (result.Score >= recognitionThreshold)
+            if (result.Score >= recognitionThreshold && result.Score != 1)
             {
                 Debug.Log($"Gest reconegut: {recognized} (Score: {result.Score:F2})");
 
