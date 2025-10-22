@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class SingleWordScript : MonoBehaviour
@@ -11,12 +12,30 @@ public class SingleWordScript : MonoBehaviour
     private float baseSpeed;
     private float currentSpeed;
     private float acceleration = 1f;
-    private GameObject splashDrop;
+    public GameObject splashDrop;
     private float waveFrequency = 2f;
-    private float waveAmplitude = 50f;
+    private float waveAmplitude = 0.5f;
 
     private float waveOffset; // unique offset per object
 
+    private bool isGoingLeftWord = false;
+    private Vector2 waveMovement;
+
+
+    private TMP_Text tmp;
+    private BoxCollider2D col;
+    private Rigidbody2D rb;
+
+    void AdjustColliderToText()
+    {
+        tmp = GetComponent<TMP_Text>();
+        col = GetComponent<BoxCollider2D>();
+        rb = GetComponent<Rigidbody2D>();
+        tmp.ForceMeshUpdate();
+        var bounds = tmp.textBounds; // TMP built-in text bounds
+        col.size = bounds.size;
+        col.offset = bounds.center;
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -39,10 +58,16 @@ public class SingleWordScript : MonoBehaviour
             currentSpeed = baseSpeed;
         }
         float yOffset = Mathf.Sin(Time.time * waveFrequency + waveOffset) * waveAmplitude;
-
-        Vector2 waveMovement = new Vector2(-currentSpeed * Time.deltaTime, yOffset * Time.deltaTime);
+        if (isGoingLeftWord)
+        {
+            waveMovement = new Vector2(-currentSpeed * Time.deltaTime, yOffset * Time.deltaTime);
+        }
+        else
+        {
+            waveMovement = new Vector2(currentSpeed * Time.deltaTime, yOffset * Time.deltaTime);
+        }
         transform.Translate(waveMovement);
-
+        
         timeAlive += Time.deltaTime;
     }
 
@@ -55,7 +80,13 @@ public class SingleWordScript : MonoBehaviour
                 gameManager.Remove0();
             }
             splashDrop.GetComponent<ParticleSystem>().Play();
-            //Destroy(gameObject);
+            Instantiate(splashDrop, transform.position, Quaternion.identity, null);
+            Destroy(gameObject);
         }
+    }
+    public void GoingLeftWord(bool sino)
+    {
+        isGoingLeftWord = sino;
+        AdjustColliderToText();
     }
 }

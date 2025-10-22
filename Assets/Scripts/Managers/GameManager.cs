@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public Transform spawner1;
     public Transform spawner2;
     public Transform spawner3;
+    public Transform spawner4;
     public WordsList wordsList;
 
     [Header("ActualWords")]
@@ -113,7 +114,6 @@ public class GameManager : MonoBehaviour
 
         if (wordsInOrder.Count > 0)
         {
-            Debug.Log("LERP");
             wordsInOrder[0].GetComponent<TMP_Text>().alpha = Mathf.Lerp(wordsInOrder[0].GetComponent<TMP_Text>().alpha,1f,Time.deltaTime*4);
         }
         if (time < 0 && actualWords.Count > 0)
@@ -122,13 +122,20 @@ public class GameManager : MonoBehaviour
             time = timer;
             randomWord = UnityEngine.Random.Range(0, actualWords.Count);
 
-            randomSpawner = UnityEngine.Random.Range(0, 3);
-            selectedSpawner = randomSpawner switch { 0 => spawner1, 1 => spawner2, _ => spawner3 };
+            randomSpawner = UnityEngine.Random.Range(0, 4);
+            selectedSpawner = randomSpawner switch { 0 => spawner1, 1 => spawner2, 2 => spawner3, _ => spawner4 };
 
             selectedWord = Instantiate(textPrefab, selectedSpawner);
             selectedWord.GetComponent<TMP_Text>().text = actualWords[randomWord].basic;
             selectedWord.GetComponent<SingleWordScript>().wordsClass = actualWords[randomWord];
-
+            if (randomSpawner == 0 || randomSpawner == 1)
+            {
+                selectedWord.GetComponent<SingleWordScript>().GoingLeftWord(true);
+            }
+            else
+            {
+                selectedWord.GetComponent<SingleWordScript>().GoingLeftWord(false);
+            }
             wordsInOrder.Add(selectedWord);
             actualWords.RemoveAt(randomWord);
         }
@@ -151,7 +158,7 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Time Alive"+Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive));
                 Debug.Log("Resta" + (correctWordPoints - Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive)));
                 Debug.Log("Multiplicador: " + (speed / 200f));
-                actualPoints += (int)((correctWordPoints - Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive)) * (speed / 200f)) + correctWordPoints;
+                actualPoints += (int)((correctWordPoints - Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive)) * (speed / 0.8)) + correctWordPoints;
                 Debug.Log("Punts actuals: " + actualPoints);
                 wordsInOrder[0].GetComponent<TMP_Text>().color = Color.green;
                 wordsInOrder[0].GetComponent<SingleWordScript>().isRemoved = true;
@@ -174,7 +181,7 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Time Alive"+Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive));
                 Debug.Log("Resta" + (correctWordPoints - Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive)));
                 Debug.Log("Multiplicador: " + (speed / 200f));
-                actualPoints += (int)((correctWordPoints - Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive)) * (speed / 200f)) + correctWordPoints;
+                actualPoints += (int)((correctWordPoints - Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive)) * (speed / 0.8)) + correctWordPoints;
                 Debug.Log("Punts actuals: " + actualPoints);
                 wordsInOrder[0].GetComponent<TMP_Text>().color = Color.green;
                 wordsInOrder[0].GetComponent<SingleWordScript>().isRemoved = true;
@@ -196,8 +203,8 @@ public class GameManager : MonoBehaviour
             {
                 Debug.Log("Time Alive" + Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive));
                 Debug.Log("Resta" + (correctWordPoints - Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive)));
-                Debug.Log("Multiplicador: " + (speed / 200f));
-                actualPoints += (int)((correctWordPoints - Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive)) * (speed / 200f)) + correctWordPoints;
+                Debug.Log("Multiplicador: " + (speed / 2));
+                actualPoints += (int)((correctWordPoints - Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive)) * (speed / 0.8)) + correctWordPoints;
                 Debug.Log("Punts actuals: " + actualPoints);
                 wordsInOrder[0].GetComponent<TMP_Text>().color = Color.green;
                 wordsInOrder[0].GetComponent<SingleWordScript>().isRemoved = true;
