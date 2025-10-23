@@ -1,0 +1,1 @@
+Delay time: 20 in 1/100 of second (0.2sec between frames)

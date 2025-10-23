@@ -18,13 +18,16 @@ public class SingleWordScript : MonoBehaviour
 
     private float waveOffset; // unique offset per object
 
-    private bool isGoingLeftWord = false;
+    public bool isGoingLeftWord = false;
     private Vector2 waveMovement;
 
 
     private TMP_Text tmp;
     private BoxCollider2D col;
     private Rigidbody2D rb;
+    public GameObject correctAnswer;
+    public GameObject wrongAnswer;
+    private bool lowAlpha;
 
     void AdjustColliderToText()
     {
@@ -39,6 +42,8 @@ public class SingleWordScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        wrongAnswer.SetActive(false);
+        correctAnswer.SetActive(false);
         gameManager = FindAnyObjectByType<GameManager>();
         baseSpeed = gameManager.speed;
         currentSpeed = baseSpeed;
@@ -67,8 +72,12 @@ public class SingleWordScript : MonoBehaviour
             waveMovement = new Vector2(currentSpeed * Time.deltaTime, yOffset * Time.deltaTime);
         }
         transform.Translate(waveMovement);
-        
+
         timeAlive += Time.deltaTime;
+        if (lowAlpha && GetComponent<TMP_Text>().alpha > 0.3f)
+        {
+            GetComponent<TMP_Text>().alpha = Mathf.Lerp(GetComponent<TMP_Text>().alpha,0.3f,Time.deltaTime*2);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
@@ -88,5 +97,18 @@ public class SingleWordScript : MonoBehaviour
     {
         isGoingLeftWord = sino;
         AdjustColliderToText();
+    }
+
+    public void CorrectAnswer(bool correct)
+    {
+        if (correct)
+        {
+            correctAnswer.SetActive(true);
+        }
+        else
+        {
+            wrongAnswer.SetActive(true);
+        }
+        lowAlpha = true;
     }
 }

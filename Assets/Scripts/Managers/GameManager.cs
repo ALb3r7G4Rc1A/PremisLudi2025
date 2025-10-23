@@ -48,6 +48,8 @@ public class GameManager : MonoBehaviour
     [Header("Progress")]
     public int correctWordPoints;
     public int actualPoints;
+
+    public GoosScript goosScript;
     // Start is called before the first frame update
     void Start()
     {
@@ -138,6 +140,11 @@ public class GameManager : MonoBehaviour
             }
             wordsInOrder.Add(selectedWord);
             actualWords.RemoveAt(randomWord);
+
+            if (wordsInOrder.Count == 1)
+            {
+                goosScript.Turn(wordsInOrder[0].GetComponent<SingleWordScript>().isGoingLeftWord);
+            }
         }
         else { time -= Time.deltaTime; }
 
@@ -150,6 +157,7 @@ public class GameManager : MonoBehaviour
 
     public void OptionPress(int option)
     {
+        goosScript.Attack();
         if (option == 1 && wordsInOrder.Count > 0)
         {
             wordsInOrder[0].GetComponent<TMP_Text>().text = wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass.option1;
@@ -160,16 +168,20 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Multiplicador: " + (speed / 200f));
                 actualPoints += (int)((correctWordPoints - Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive)) * (speed / 0.8)) + correctWordPoints;
                 Debug.Log("Punts actuals: " + actualPoints);
-                wordsInOrder[0].GetComponent<TMP_Text>().color = Color.green;
+                //wordsInOrder[0].GetComponent<TMP_Text>().color = Color.green;
+                
+                wordsInOrder[0].GetComponent<SingleWordScript>().CorrectAnswer(true);
                 wordsInOrder[0].GetComponent<SingleWordScript>().isRemoved = true;
-                wordsInOrder.RemoveAt(0);
+                NextWord();
             }
             else
             {
-                wordsInOrder[0].GetComponent<TMP_Text>().color = Color.red;
+                //wordsInOrder[0].GetComponent<TMP_Text>().color = Color.red;
+                
                 wordsInOrder[0].GetComponent<SingleWordScript>().isRemoved = true;
+                wordsInOrder[0].GetComponent<SingleWordScript>().CorrectAnswer(false);
                 missedWords.Add(wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass);
-                wordsInOrder.RemoveAt(0);
+                NextWord();
             }
         }
 
@@ -183,16 +195,20 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Multiplicador: " + (speed / 200f));
                 actualPoints += (int)((correctWordPoints - Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive)) * (speed / 0.8)) + correctWordPoints;
                 Debug.Log("Punts actuals: " + actualPoints);
-                wordsInOrder[0].GetComponent<TMP_Text>().color = Color.green;
+                //wordsInOrder[0].GetComponent<TMP_Text>().color = Color.green;
+                
+                wordsInOrder[0].GetComponent<SingleWordScript>().CorrectAnswer(true);
                 wordsInOrder[0].GetComponent<SingleWordScript>().isRemoved = true;
-                wordsInOrder.RemoveAt(0);
+                NextWord();
             }
             else
             {
-                wordsInOrder[0].GetComponent<TMP_Text>().color = Color.red;
+                //wordsInOrder[0].GetComponent<TMP_Text>().color = Color.red;
+                
+                wordsInOrder[0].GetComponent<SingleWordScript>().CorrectAnswer(false);
                 missedWords.Add(wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass);
                 wordsInOrder[0].GetComponent<SingleWordScript>().isRemoved = true;
-                wordsInOrder.RemoveAt(0);
+                NextWord();
             }
         }
 
@@ -206,16 +222,20 @@ public class GameManager : MonoBehaviour
                 Debug.Log("Multiplicador: " + (speed / 2));
                 actualPoints += (int)((correctWordPoints - Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive)) * (speed / 0.8)) + correctWordPoints;
                 Debug.Log("Punts actuals: " + actualPoints);
-                wordsInOrder[0].GetComponent<TMP_Text>().color = Color.green;
+                //wordsInOrder[0].GetComponent<TMP_Text>().color = Color.green;
+                
+                wordsInOrder[0].GetComponent<SingleWordScript>().CorrectAnswer(true);
                 wordsInOrder[0].GetComponent<SingleWordScript>().isRemoved = true;
-                wordsInOrder.RemoveAt(0);
+                NextWord();
             }
             else
             {
-                wordsInOrder[0].GetComponent<TMP_Text>().color = Color.red;
+                //wordsInOrder[0].GetComponent<TMP_Text>().color = Color.red;
+                
+                wordsInOrder[0].GetComponent<SingleWordScript>().CorrectAnswer(false);
                 missedWords.Add(wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass);
                 wordsInOrder[0].GetComponent<SingleWordScript>().isRemoved = true;
-                wordsInOrder.RemoveAt(0);
+                NextWord();
             }
         }
     }
@@ -223,11 +243,20 @@ public class GameManager : MonoBehaviour
     public void Remove0()
     {
         missedWords.Add(wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass);
-        wordsInOrder.RemoveAt(0);
+        NextWord();
     }
 
     private void SetSpawnTimer()
     {
         timer = Math.Abs(wordLimit.position.x - spawner1.position.x) / speed / maxWordsOnScreen;
+    }
+
+    private void NextWord()
+    {
+        wordsInOrder.RemoveAt(0);
+        if (wordsInOrder.Count > 0)
+        {
+            goosScript.Turn(wordsInOrder[0].GetComponent<SingleWordScript>().isGoingLeftWord);
+        }
     }
 }
