@@ -5,10 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    // Start is called before the first frame update
+    [SerializeField] private string menuSongName = "MenuSong";
     void Start()
     {
-        
+        //AudioManager.Instance.Play(menuSongName);   
     }
 
     // Update is called once per frame
