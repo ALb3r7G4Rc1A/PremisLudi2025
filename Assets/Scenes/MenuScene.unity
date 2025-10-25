@@ -557,7 +557,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Com Jugar?
+  m_text: Com jugar?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 15ac7956297bbca419ba99e09fe44791, type: 2}
   m_sharedMaterial: {fileID: -3332399793262826328, guid: 15ac7956297bbca419ba99e09fe44791, type: 2}
@@ -1391,6 +1391,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b821b20355833ae44ad150d75bbefe5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  menuSongName: MenuSong
 --- !u!4 &1322010171
 Transform:
   m_ObjectHideFlags: 0
