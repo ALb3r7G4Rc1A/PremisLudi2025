@@ -56,6 +56,16 @@ MonoBehaviour:
     spatialBlend: 0
     outputGroup: {fileID: -6765868288026971167, guid: 76baa01ac60ace542afa80e9e37e64a1, type: 2}
     source: {fileID: 0}
+  - name: LevelSong
+    clip: {fileID: 8300000, guid: 78e5b304b4c2d4b49a1bd27049eccd79, type: 3}
+    volume: 0.15
+    pitch: 1
+    loop: 1
+    playOnAwake: 0
+    spatialize: 0
+    spatialBlend: 0
+    outputGroup: {fileID: -6765868288026971167, guid: 76baa01ac60ace542afa80e9e37e64a1, type: 2}
+    source: {fileID: 0}
   sfx: []
   ui:
   - name: ClickButton

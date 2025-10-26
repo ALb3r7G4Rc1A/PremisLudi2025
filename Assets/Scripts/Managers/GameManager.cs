@@ -49,10 +49,15 @@ public class GameManager : MonoBehaviour
     public int correctWordPoints;
     public int actualPoints;
 
+
+    [Header("Audio")]
+    [SerializeField] private string levelSongName = "LevelSong";
+
     public GoosScript goosScript;
     // Start is called before the first frame update
     void Start()
     {
+        AudioManager.Instance.Play(levelSongName);  
         actualWords = new List<WordsClass>();
         for (int i = 0; i < 15; i++)
         {
