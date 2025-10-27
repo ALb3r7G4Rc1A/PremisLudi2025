@@ -136,7 +136,7 @@ public class WordsList : MonoBehaviour
         };
 
         medium = new WordsClass[] {
-            new WordsClass("créixer",   "<b><u>crei</u></b>xer",    "crèixer",    "creixer",    "créixer"),
+            //new WordsClass("créixer",   "<b><u>crei</u></b>xer",    "crèixer",    "creixer",    "créixer"),
             new WordsClass("gairebé",   "gaire<b><u>be</u></b>",    "gairebè",    "gairabe",    "gairebé"),
             new WordsClass("caminaran", "camina<b><u>ran</u></b>",  "caminaràn",  "caminaran",  "caminarán"),
             new WordsClass("pòster",    "<b><u>pos</u></b>ter",     "pòster",     "poster",     "póster"),

@@ -28,6 +28,9 @@ public class SingleWordScript : MonoBehaviour
     public GameObject correctAnswer;
     public GameObject wrongAnswer;
     private bool lowAlpha;
+    public bool isResolved;
+    public Transform pointsBox;
+    public int points;
 
     void AdjustColliderToText()
     {
@@ -45,6 +48,7 @@ public class SingleWordScript : MonoBehaviour
         wrongAnswer.SetActive(false);
         correctAnswer.SetActive(false);
         gameManager = FindAnyObjectByType<GameManager>();
+        pointsBox = GameObject.FindGameObjectWithTag("PointsBox").transform;
         baseSpeed = gameManager.speed;
         currentSpeed = baseSpeed;
         isRemoved = false;
@@ -56,7 +60,8 @@ public class SingleWordScript : MonoBehaviour
     {
         if (isRemoved)
         {
-            currentSpeed = Mathf.Lerp(currentSpeed, baseSpeed * 10f, Time.deltaTime * acceleration);
+            //currentSpeed = Mathf.Lerp(currentSpeed, baseSpeed * 10f, Time.deltaTime * acceleration);
+            currentSpeed = baseSpeed * 10f;
         }
         else
         {
@@ -71,8 +76,15 @@ public class SingleWordScript : MonoBehaviour
         {
             waveMovement = new Vector2(currentSpeed * Time.deltaTime, yOffset * Time.deltaTime);
         }
-        transform.Translate(waveMovement);
-
+        if (isResolved)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, pointsBox.position, baseSpeed * 10 * Time.deltaTime);
+            transform.localScale = Vector3.Lerp(transform.localScale, Vector3.zero, Time.deltaTime * 0.5f);
+        }
+        else
+        {
+            transform.Translate(waveMovement);
+        }
         timeAlive += Time.deltaTime;
         if (lowAlpha && GetComponent<TMP_Text>().alpha > 0.3f)
         {
@@ -82,15 +94,22 @@ public class SingleWordScript : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag.Equals("WordLimit"))
+        if (collision.tag.Equals("WordLimit") && !isResolved)
         {
             if (!isRemoved)
             {
                 gameManager.Remove0();
             }
+            gameManager.Hitted();
             splashDrop.GetComponent<ParticleSystem>().Play();
             Instantiate(splashDrop, transform.position, Quaternion.identity, null);
             Destroy(gameObject);
+        }
+        if (collision.tag.Equals("PointsBox") && isResolved)
+        {
+            Destroy(gameObject);
+            //Efecte punts
+            gameManager.AddPoints(points);
         }
     }
     public void GoingLeftWord(bool sino)
