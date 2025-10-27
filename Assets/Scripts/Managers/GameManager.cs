@@ -73,7 +73,6 @@ public class GameManager : MonoBehaviour
             }
             eazyWordsTaken[i] = word;
             actualWords.Add(wordsList.eazy[word]);
-            Debug.Log(wordsList.eazy[word].ToString());
         }
 
         for (int i = 0; i < 10; i++)
@@ -90,7 +89,6 @@ public class GameManager : MonoBehaviour
             }
             mediumWordsTaken[i] = word;
             actualWords.Add(wordsList.medium[word]);
-            Debug.Log(wordsList.medium[word].ToString());
         }
 
         for (int i = 0; i < 5; i++)
@@ -107,11 +105,7 @@ public class GameManager : MonoBehaviour
             }
             hardWordsTaken[i] = word;
             actualWords.Add(wordsList.hard[word]);
-            Debug.Log(wordsList.hard[word].ToString());
         }
-        //només es per comprovar q es vegin les paraules bé
-        //provaParaula.text = actualWords[0].basic; // Mostra la paraula
-        Debug.Log("Primera paraula: " + actualWords[0].basic);
         SetSpawnTimer();
     }
 
@@ -158,6 +152,10 @@ public class GameManager : MonoBehaviour
             actualWords = missedWords;
             missedWords = new List<WordsClass>();
         }
+        if (wordsInOrder.Count < 1 && missedWords.Count < 1 && actualWords.Count < 1)
+        {
+            Debug.Log("END");
+        }
     }
 
     public void OptionPress(int option)
@@ -168,21 +166,13 @@ public class GameManager : MonoBehaviour
             wordsInOrder[0].GetComponent<TMP_Text>().text = wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass.option1;
             if (wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass.isCorrectAccent(1))
             {
-                Debug.Log("Time Alive"+Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive));
-                Debug.Log("Resta" + (correctWordPoints - Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive)));
-                Debug.Log("Multiplicador: " + (speed / 200f));
                 actualPoints += (int)((correctWordPoints - Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive)) * (speed / 0.8)) + correctWordPoints;
-                Debug.Log("Punts actuals: " + actualPoints);
-                //wordsInOrder[0].GetComponent<TMP_Text>().color = Color.green;
-                
                 wordsInOrder[0].GetComponent<SingleWordScript>().CorrectAnswer(true);
                 wordsInOrder[0].GetComponent<SingleWordScript>().isRemoved = true;
                 NextWord();
             }
             else
             {
-                //wordsInOrder[0].GetComponent<TMP_Text>().color = Color.red;
-                
                 wordsInOrder[0].GetComponent<SingleWordScript>().isRemoved = true;
                 wordsInOrder[0].GetComponent<SingleWordScript>().CorrectAnswer(false);
                 missedWords.Add(wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass);
@@ -195,21 +185,13 @@ public class GameManager : MonoBehaviour
             wordsInOrder[0].GetComponent<TMP_Text>().text = wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass.option2;
             if (wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass.isCorrectAccent(2))
             {
-                Debug.Log("Time Alive"+Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive));
-                Debug.Log("Resta" + (correctWordPoints - Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive)));
-                Debug.Log("Multiplicador: " + (speed / 200f));
                 actualPoints += (int)((correctWordPoints - Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive)) * (speed / 0.8)) + correctWordPoints;
-                Debug.Log("Punts actuals: " + actualPoints);
-                //wordsInOrder[0].GetComponent<TMP_Text>().color = Color.green;
-                
                 wordsInOrder[0].GetComponent<SingleWordScript>().CorrectAnswer(true);
                 wordsInOrder[0].GetComponent<SingleWordScript>().isRemoved = true;
                 NextWord();
             }
             else
             {
-                //wordsInOrder[0].GetComponent<TMP_Text>().color = Color.red;
-                
                 wordsInOrder[0].GetComponent<SingleWordScript>().CorrectAnswer(false);
                 missedWords.Add(wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass);
                 wordsInOrder[0].GetComponent<SingleWordScript>().isRemoved = true;
@@ -222,21 +204,13 @@ public class GameManager : MonoBehaviour
             wordsInOrder[0].GetComponent<TMP_Text>().text = wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass.option3;
             if (wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass.isCorrectAccent(3))
             {
-                Debug.Log("Time Alive" + Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive));
-                Debug.Log("Resta" + (correctWordPoints - Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive)));
-                Debug.Log("Multiplicador: " + (speed / 2));
                 actualPoints += (int)((correctWordPoints - Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive)) * (speed / 0.8)) + correctWordPoints;
-                Debug.Log("Punts actuals: " + actualPoints);
-                //wordsInOrder[0].GetComponent<TMP_Text>().color = Color.green;
-                
                 wordsInOrder[0].GetComponent<SingleWordScript>().CorrectAnswer(true);
                 wordsInOrder[0].GetComponent<SingleWordScript>().isRemoved = true;
                 NextWord();
             }
             else
             {
-                //wordsInOrder[0].GetComponent<TMP_Text>().color = Color.red;
-                
                 wordsInOrder[0].GetComponent<SingleWordScript>().CorrectAnswer(false);
                 missedWords.Add(wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass);
                 wordsInOrder[0].GetComponent<SingleWordScript>().isRemoved = true;

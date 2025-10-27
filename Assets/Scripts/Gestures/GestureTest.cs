@@ -43,7 +43,7 @@ public class GestureTest : MonoBehaviour
         for (int i = 0; i < gestureFiles.Length; i++)
             trainingSet[i] = GestureIO.ReadGestureFromFile(gestureFiles[i]);
 
-        Debug.Log($"Gestos carregats: {trainingSet.Length}");
+        //Debug.Log($"Gestos carregats: {trainingSet.Length}");
     }
 
     void Update()
@@ -80,7 +80,7 @@ public class GestureTest : MonoBehaviour
 
             if (result.Score >= recognitionThreshold && result.Score != 1)
             {
-                Debug.Log($"Gest reconegut: {recognized} (Score: {result.Score:F2})");
+                //Debug.Log($"Gest reconegut: {recognized} (Score: {result.Score:F2})");
 
                 // Cridar funció del GameManager segons el gest reconegut
                 if (gameManager != null)
@@ -100,18 +100,18 @@ public class GestureTest : MonoBehaviour
                             break;
 
                         default:
-                            Debug.Log("No hi ha acció assignada a aquest gest.");
+                            //Debug.Log("No hi ha acció assignada a aquest gest.");
                             break;
                     }
                 }
                 else
                 {
-                    Debug.LogWarning("No s'ha assignat cap GameManager al GestureTest.");
+                    //Debug.LogWarning("No s'ha assignat cap GameManager al GestureTest.");
                 }
             }
             else
             {
-                Debug.Log($"No s'ha reconegut cap figura. (Score: {result.Score:F2})");
+                //Debug.Log($"No s'ha reconegut cap figura. (Score: {result.Score:F2})");
                 recognized = "";
             }
 

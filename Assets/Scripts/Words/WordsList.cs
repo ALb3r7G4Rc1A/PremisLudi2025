@@ -135,7 +135,6 @@ public class WordsList : MonoBehaviour
             new WordsClass("aventura",  "aven<b><u>tu</u></b>ra",   "aventùra",   "aventura",   "aventúra")
         };
 
-        Debug.Log(eazy[1].option3);
         medium = new WordsClass[] {
             new WordsClass("créixer",   "<b><u>crei</u></b>xer",    "crèixer",    "creixer",    "créixer"),
             new WordsClass("gairebé",   "gaire<b><u>be</u></b>",    "gairebè",    "gairabe",    "gairebé"),
