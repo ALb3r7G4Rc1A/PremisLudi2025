@@ -66,8 +66,7 @@ MonoBehaviour:
     spatialBlend: 0
     outputGroup: {fileID: -6765868288026971167, guid: 76baa01ac60ace542afa80e9e37e64a1, type: 2}
     source: {fileID: 0}
-  sfx: []
-  ui:
+  sfx:
   - name: ClickButton
     clip: {fileID: 8300000, guid: 7ca5851f7a542e447a9377b24a74ee60, type: 3}
     volume: 1
@@ -76,7 +75,7 @@ MonoBehaviour:
     playOnAwake: 0
     spatialize: 0
     spatialBlend: 0
-    outputGroup: {fileID: 3734142255127312549, guid: 76baa01ac60ace542afa80e9e37e64a1, type: 2}
+    outputGroup: {fileID: 1945693113348355482, guid: 76baa01ac60ace542afa80e9e37e64a1, type: 2}
     source: {fileID: 0}
   - name: HoverButton
     clip: {fileID: 8300000, guid: 17b23ad798ca93a43b806d32c3a43637, type: 3}
@@ -86,5 +85,5 @@ MonoBehaviour:
     playOnAwake: 0
     spatialize: 0
     spatialBlend: 0
-    outputGroup: {fileID: 3734142255127312549, guid: 76baa01ac60ace542afa80e9e37e64a1, type: 2}
+    outputGroup: {fileID: 1945693113348355482, guid: 76baa01ac60ace542afa80e9e37e64a1, type: 2}
     source: {fileID: 0}

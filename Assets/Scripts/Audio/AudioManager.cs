@@ -12,7 +12,6 @@ public class AudioManager : MonoBehaviour
     [Header("Sonidos")]
     public Sound[] music;
     public Sound[] sfx;
-    public Sound[] ui;
 
     private Dictionary<string, Sound> soundDictionary = new();
 
@@ -24,7 +23,6 @@ public class AudioManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             InitCategory(music);
             InitCategory(sfx);
-            InitCategory(ui);
         }
         else
         {
