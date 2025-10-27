@@ -5,28 +5,20 @@ using UnityEngine;
 public class GoosScript : MonoBehaviour
 {
     public Animator animator;
+    public Animator animatorWhite;
     private bool isGoosLeft;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
 
     public void Attack()
     {
         if (isGoosLeft)
         {
             animator.SetTrigger("LeftAttack");
+            animatorWhite.SetTrigger("LeftAttack");
         }
         else
         {
             animator.SetTrigger("RightAttack");
+            animatorWhite.SetTrigger("RightAttack");
         }
     }
     
@@ -35,11 +27,13 @@ public class GoosScript : MonoBehaviour
         if (isGoosLeft && right) //La paraula ve de la dreta i el gos mira esquerra
         {
             animator.SetTrigger("LeftToRightTurn");
+            animatorWhite.SetTrigger("LeftToRightTurn");
              isGoosLeft = false;
         }
         else if (!isGoosLeft && !right) //La paraula ve de la esquerra i el gos mira dreta
         {
             animator.SetTrigger("RightToLeftTurn");
+            animatorWhite.SetTrigger("RightToLeftTurn");
             isGoosLeft = true;
         }
 
