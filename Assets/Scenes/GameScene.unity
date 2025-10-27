@@ -1019,6 +1019,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1101976944}
+  animatorWhite: {fileID: 2106435494}
 --- !u!1 &1184191754
 GameObject:
   m_ObjectHideFlags: 0
@@ -2177,14 +2178,13 @@ GameObject:
   - component: {fileID: 2106435496}
   - component: {fileID: 2106435495}
   - component: {fileID: 2106435494}
-  - component: {fileID: 2106435493}
   m_Layer: 0
   m_Name: Goos (1)
   m_TagString: WordLimit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2106435492
 Transform:
   m_ObjectHideFlags: 0
@@ -2200,19 +2200,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1101976940}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2106435493
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2106435491}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6ca5306edc7869e4e807525b8fb23fab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  animator: {fileID: 2106435494}
 --- !u!95 &2106435494
 Animator:
   serializedVersion: 5
@@ -2223,7 +2210,7 @@ Animator:
   m_GameObject: {fileID: 2106435491}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 09b2b3551037db246a3d70df78d07a35, type: 2}
+  m_Controller: {fileID: 9100000, guid: 0009942facb488c4ab7c594cda31b09f, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

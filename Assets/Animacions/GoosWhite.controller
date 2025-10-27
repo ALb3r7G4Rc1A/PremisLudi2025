@@ -7,7 +7,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: RightToLeftTurn
+  m_Name: RightToLeftTurnWhite
   m_Speed: 0.5
   m_CycleOffset: 0
   m_Transitions:
@@ -22,7 +22,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 093481ecdf784a74cbc265956af50239, type: 2}
+  m_Motion: {fileID: 7400000, guid: e6d6889ea215dcd4c8cccbbcb37541a7, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -107,7 +107,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: LeftIdle
+  m_Name: LeftIdleWhite
   m_Speed: 0.5
   m_CycleOffset: 0
   m_Transitions:
@@ -122,7 +122,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 1157863f071e12b4bbc893a36a8dd7b3, type: 2}
+  m_Motion: {fileID: 7400000, guid: fca86403c7ed828448ba7e5410cfc314, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -149,7 +149,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 1f2c94364b22dc741b6d53cb4d3ff5ec, type: 2}
+  m_Motion: {fileID: 7400000, guid: dddb3104704c43f4581e88ba124637f9, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -162,7 +162,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: LeftAttack
+  m_Name: LeftAttackWhite
   m_Speed: 0.5
   m_CycleOffset: 0
   m_Transitions:
@@ -176,7 +176,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 7f603fe748152ab4a94528bd889970c8, type: 2}
+  m_Motion: {fileID: 7400000, guid: a61a9115f8942174689f6a8e216d8de0, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -379,7 +379,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: RightIdle
+  m_Name: RightIdleWhite
   m_Speed: 0.5
   m_CycleOffset: 0
   m_Transitions:
@@ -394,7 +394,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: f5c51ee10618a764c9d16d57028c0c9a, type: 2}
+  m_Motion: {fileID: 7400000, guid: 729a53ad6f20e2d48b6b3671c1da8400, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -466,7 +466,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: LeftToRightTurn
+  m_Name: LeftToRightTurnWhite
   m_Speed: 0.5
   m_CycleOffset: 0
   m_Transitions:
@@ -481,7 +481,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 912d09779b2cf9740946686c449af148, type: 2}
+  m_Motion: {fileID: 7400000, guid: c78a9c1dfe09e984898045687b4729f6, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
