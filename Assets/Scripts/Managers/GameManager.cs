@@ -57,7 +57,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       // AudioManager.Instance.Play(levelSongName);  
+        AudioManager.Instance.Play(levelSongName);  
         actualWords = new List<WordsClass>();
         for (int i = 0; i < 15; i++)
         {
