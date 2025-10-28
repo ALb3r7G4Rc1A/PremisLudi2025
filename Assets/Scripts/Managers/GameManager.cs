@@ -55,10 +55,12 @@ public class GameManager : MonoBehaviour
 
     private float pointsColorTimer = 0;
     private int streak;
+    private int badStreak;
     // Start is called before the first frame update
     void Start()
     {
         streak = 0;
+        badStreak = 0;
         // AudioManager.Instance.Play(levelSongName);  
         actualWords = new List<WordsClass>();
         for (int i = 0; i < 15; i++)
@@ -124,10 +126,6 @@ public class GameManager : MonoBehaviour
             pointsColorTimer -= Time.deltaTime;
         }        
         pointsText.text = actualPoints + "";
-        if (streak > 4)
-        {
-            goosScript.Shine();
-        }
         if (wordsInOrder.Count > 0)
         {
             wordsInOrder[0].GetComponent<TMP_Text>().alpha = Mathf.Lerp(wordsInOrder[0].GetComponent<TMP_Text>().alpha, 1f, Time.deltaTime * 4);
@@ -178,58 +176,30 @@ public class GameManager : MonoBehaviour
         if (option == 1 && wordsInOrder.Count > 0)
         {
             wordsInOrder[0].GetComponent<TMP_Text>().text = wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass.option1;
-            if (wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass.isCorrectAccent(1))
-            {
-                goosScript.Attack(true);
-                streak++;
-                wordsInOrder[0].GetComponent<SingleWordScript>().points = (int)((correctWordPoints - Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive)) * (speed / 0.8)) + correctWordPoints;
-                wordsInOrder[0].GetComponent<SingleWordScript>().CorrectAnswer(true);
-                wordsInOrder[0].GetComponent<SingleWordScript>().isRemoved = true;
-                wordsInOrder[0].GetComponent<SingleWordScript>().isResolved = true;
-                NextWord();
-            }
-            else
-            {
-                goosScript.Attack(false);
-                streak = 0;
-                wordsInOrder[0].GetComponent<SingleWordScript>().isRemoved = true;
-                wordsInOrder[0].GetComponent<SingleWordScript>().CorrectAnswer(false);
-                missedWords.Add(wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass);
-                NextWord();
-            }
         }
-
-        if (option == 2 && wordsInOrder.Count > 0)
+        else if (option == 2 && wordsInOrder.Count > 0)
         {
             wordsInOrder[0].GetComponent<TMP_Text>().text = wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass.option2;
-            if (wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass.isCorrectAccent(2))
-            {
-                goosScript.Attack(true);
-                streak++;
-                wordsInOrder[0].GetComponent<SingleWordScript>().points = (int)((correctWordPoints - Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive)) * (speed / 0.8)) + correctWordPoints;
-                wordsInOrder[0].GetComponent<SingleWordScript>().CorrectAnswer(true);
-                wordsInOrder[0].GetComponent<SingleWordScript>().isRemoved = true;
-                wordsInOrder[0].GetComponent<SingleWordScript>().isResolved = true;
-                NextWord();
-            }
-            else
-            {
-                goosScript.Attack(false);
-                streak = 0;
-                wordsInOrder[0].GetComponent<SingleWordScript>().CorrectAnswer(false);
-                missedWords.Add(wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass);
-                wordsInOrder[0].GetComponent<SingleWordScript>().isRemoved = true;
-                NextWord();
-            }
         }
-
-        if (option == 3 && wordsInOrder.Count > 0)
+        else if (option == 3 && wordsInOrder.Count > 0)
         {
             wordsInOrder[0].GetComponent<TMP_Text>().text = wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass.option3;
-            if (wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass.isCorrectAccent(3))
+        }
+
+        if (wordsInOrder.Count > 0)
+        {
+            if (wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass.isCorrectAccent(option))
             {
-                goosScript.Attack(true);
                 streak++;
+                badStreak = 0;
+                if (streak == 5)
+                {
+                    goosScript.Shine();
+                }
+                else
+                {
+                    goosScript.Attack(true);
+                }
                 wordsInOrder[0].GetComponent<SingleWordScript>().points = (int)((correctWordPoints - Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive)) * (speed / 0.8)) + correctWordPoints;
                 wordsInOrder[0].GetComponent<SingleWordScript>().CorrectAnswer(true);
                 wordsInOrder[0].GetComponent<SingleWordScript>().isRemoved = true;
@@ -240,9 +210,10 @@ public class GameManager : MonoBehaviour
             {
                 goosScript.Attack(false);
                 streak = 0;
+                badStreak++;
+                wordsInOrder[0].GetComponent<SingleWordScript>().isRemoved = true;
                 wordsInOrder[0].GetComponent<SingleWordScript>().CorrectAnswer(false);
                 missedWords.Add(wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass);
-                wordsInOrder[0].GetComponent<SingleWordScript>().isRemoved = true;
                 NextWord();
             }
         }
@@ -269,7 +240,7 @@ public class GameManager : MonoBehaviour
     }
     public void Hitted()
     {
-        goosScript.Hitted();
+        goosScript.Hitted(badStreak);
     }
     public void AddPoints(int points)
     {
