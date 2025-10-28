@@ -12,6 +12,10 @@ public class GestureTest : MonoBehaviour
 
     private LineRenderer lineRenderer;
     private Color originalColor;
+    [Header("Streak")]
+    public bool streak;
+    public Material streakMaterial;
+    private Material originalMaterial;
 
     [Header("Ajustos del traç")]
     public Color lineColor;
@@ -27,6 +31,7 @@ public class GestureTest : MonoBehaviour
     {
         // Inicialitzar LineRenderer
         lineRenderer = GetComponent<LineRenderer>();
+        originalMaterial = lineRenderer.material;
         lineRenderer.positionCount = 0;
         lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
         lineRenderer.startWidth = lineWidth;
@@ -35,7 +40,7 @@ public class GestureTest : MonoBehaviour
 
         originalColor = lineColor;
         lineRenderer.startColor = originalColor;
-        lineRenderer.endColor = originalColor;
+        lineRenderer.endColor = originalColor;     
 
         // Carregar tots els gestos .xml del projecte
         string[] gestureFiles = Directory.GetFiles(Application.dataPath, "*.xml", SearchOption.AllDirectories);
@@ -48,14 +53,26 @@ public class GestureTest : MonoBehaviour
 
     void Update()
     {
+        if (streak)
+        {
+            lineRenderer.material = streakMaterial; // NOT WORKING
+        }
+        else
+        {
+            lineRenderer.material = originalMaterial;
+        }
         // Comença un nou dibuix
         if (Input.GetMouseButtonDown(0))
         {
             isDrawing = true;
             points.Clear();
             lineRenderer.positionCount = 0;
-            lineRenderer.startColor = originalColor;
-            lineRenderer.endColor = originalColor;
+            if (!streak)
+            {
+                lineRenderer.startColor = originalColor;
+                lineRenderer.endColor = originalColor;
+                lineRenderer.materials[0] = originalMaterial;
+            }
         }
 
         // Dibuixar mentre es manté el clic
@@ -140,7 +157,10 @@ public class GestureTest : MonoBehaviour
 
         // Reiniciar el LineRenderer per al següent dibuix
         lineRenderer.positionCount = 0;
-        lineRenderer.startColor = originalColor;
-        lineRenderer.endColor = originalColor;
+        if (!streak)
+        {
+            lineRenderer.startColor = originalColor;
+            lineRenderer.endColor = originalColor;
+        }        
     }
 }

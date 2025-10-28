@@ -56,8 +56,10 @@ public class GameManager : MonoBehaviour
     public TMP_Text popUpText;
     public TMP_Text pointsText;
     public Image pointsBox;
+    [Header("Strek")]
     private int streak;
     private int badStreak;
+    public GestureTest gestureTest;
     // Start is called before the first frame update
     void Start()
     {
@@ -185,9 +187,10 @@ public class GameManager : MonoBehaviour
             {
                 streak++;
                 badStreak = 0;
-                if (streak == 5)
+                if (streak == 1)
                 {
                     goosScript.Shine();
+                    gestureTest.streak = true;
                 }
                 else
                 {
@@ -202,6 +205,7 @@ public class GameManager : MonoBehaviour
             else
             {
                 goosScript.Attack(false);
+                gestureTest.streak = false;
                 streak = 0;
                 badStreak++;
                 wordsInOrder[0].GetComponent<SingleWordScript>().isRemoved = true;

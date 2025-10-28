@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,10 +11,28 @@ public class GoosScript : MonoBehaviour
     public Material shineMaterial;
     public Material normalMaterial;
     public GameObject drops;
+    private float fillAmount;
+    private bool isShineMaterialActive;
+    public GameObject rightShadow;
+    public GameObject leftShadow;
 
     void Start()
     {
         drops.SetActive(false);
+    }
+    void Update()
+    {
+
+        if (isShineMaterialActive && gameObject.GetComponent<SpriteRenderer>().material.GetFloat("_Fill") < 0.99f)
+        {
+            fillAmount = Mathf.Lerp(gameObject.GetComponent<SpriteRenderer>().material.GetFloat("_Fill"), 1, Time.deltaTime * 4);
+            gameObject.GetComponent<SpriteRenderer>().material.SetFloat("_Fill", fillAmount);
+        }
+        else
+        {
+            rightShadow.SetActive(false);
+            leftShadow.SetActive(false);
+        }
     }
     public void Attack(bool goodAttack)
     {
@@ -53,6 +72,16 @@ public class GoosScript : MonoBehaviour
             animator.SetTrigger("Streak");
             isShine = true;
             gameObject.GetComponent<SpriteRenderer>().material = shineMaterial;
+            gameObject.GetComponent<SpriteRenderer>().material.SetFloat("_Fill", 0f);
+            isShineMaterialActive = true;
+            if (isGoosLeft)
+            {
+                leftShadow.SetActive(true);
+            }
+            else
+            {
+                rightShadow.SetActive(true);
+            }
         }
     }
     public void Hitted(int badStreak)
@@ -64,5 +93,6 @@ public class GoosScript : MonoBehaviour
         animator.SetTrigger("Hitted");
         isShine = false;
         gameObject.GetComponent<SpriteRenderer>().material = normalMaterial;
+        isShineMaterialActive = false;
     }
 }
