@@ -50,10 +50,12 @@ public class GameManager : MonoBehaviour
     [SerializeField] private string levelSongName = "LevelSong";
 
     public GoosScript goosScript;
+
+    [Header("PointsBox")]
+    public ParticleSystem popUpBox;
+    public TMP_Text popUpText;
     public TMP_Text pointsText;
     public Image pointsBox;
-
-    private float pointsColorTimer = 0;
     private int streak;
     private int badStreak;
     // Start is called before the first frame update
@@ -115,16 +117,7 @@ public class GameManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    {
-        if (pointsColorTimer < 0)
-        {
-            pointsBox.color = Color.black;
-            pointsText.color = Color.black;
-        }
-        else
-        {
-            pointsColorTimer -= Time.deltaTime;
-        }        
+    {     
         pointsText.text = actualPoints + "";
         if (wordsInOrder.Count > 0)
         {
@@ -244,9 +237,13 @@ public class GameManager : MonoBehaviour
     }
     public void AddPoints(int points)
     {
+        popUpText.text = "+" + points;
+
+        popUpBox.Play();
         actualPoints += points;
-        pointsBox.color = new Color32(126, 146, 255, 255);
-        pointsText.color = new Color32(126, 146, 255, 255);
-        pointsColorTimer = 0.5f;
+        pointsBox.GetComponent<Animator>().SetTrigger("WordEnter");
+        pointsText.GetComponent<Animator>().SetTrigger("WordEnter");
+        //pointsBox.color = new Color32(126, 146, 255, 255);
+        //pointsText.color = new Color32(126, 146, 255, 255);
     }
 }

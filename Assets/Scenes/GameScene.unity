@@ -190,8 +190,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4294939262
+  m_fontColor: {r: 0.49411765, g: 0.57254905, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -500,6 +500,8 @@ MonoBehaviour:
   actualPoints: 0
   levelSongName: LevelSong
   goosScript: {fileID: 1101976945}
+  popUpBox: {fileID: 1455629523}
+  popUpText: {fileID: 195467349}
   pointsText: {fileID: 1221355748}
   pointsBox: {fileID: 2089802179}
 --- !u!114 &336720135
@@ -1474,6 +1476,7 @@ GameObject:
   - component: {fileID: 1221355746}
   - component: {fileID: 1221355747}
   - component: {fileID: 1221355748}
+  - component: {fileID: 1221355749}
   m_Layer: 5
   m_Name: points
   m_TagString: Untagged
@@ -1597,6 +1600,27 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!95 &1221355749
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1221355745}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ebd395b192a14954d9f4ccc88e22d84b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1322698803
 GameObject:
   m_ObjectHideFlags: 0
@@ -1903,7 +1927,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 357e36b7588eddf4abf84b5ede4f5ebe, type: 2}
+  - {fileID: 2100000, guid: f14d258458431cf448323b3f0f2328ea, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -7656,6 +7680,7 @@ GameObject:
   - component: {fileID: 2089802180}
   - component: {fileID: 2089802179}
   - component: {fileID: 2089802181}
+  - component: {fileID: 2089802182}
   m_Layer: 5
   m_Name: Box
   m_TagString: PointsBox
@@ -7766,6 +7791,27 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!95 &2089802182
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2089802177}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a75e088a3c72f5f429d4826517c405be, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
