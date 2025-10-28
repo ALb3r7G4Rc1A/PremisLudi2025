@@ -9,19 +9,22 @@ public class GoosScript : MonoBehaviour
     private bool isShine = false;
     public Material shineMaterial;
     public Material normalMaterial;
+    public GameObject drops;
 
-    public void Attack(bool sino)
+    void Start()
     {
+        drops.SetActive(false);
+    }
+    public void Attack(bool goodAttack)
+    {
+        if (goodAttack)
+        {
+            drops.SetActive(false);
+        }
+        animator.SetBool("GoodAttack", goodAttack);
         if (isGoosLeft)
         {
-            if (sino)
-            {
-                animator.SetTrigger("LeftAttackGood");
-            }
-            else
-            {
-                animator.SetTrigger("LeftAttackBad");
-            }
+            animator.SetTrigger("LeftAttack");
         }
         else
         {
@@ -47,14 +50,17 @@ public class GoosScript : MonoBehaviour
     {
         if (!isShine)
         {
-            Debug.Log("SHINE");
             animator.SetTrigger("Streak");
             isShine = true;
             gameObject.GetComponent<SpriteRenderer>().material = shineMaterial;
         }
     }
-    public void Hitted()
+    public void Hitted(int badStreak)
     {
+        if (badStreak == 3)
+        {
+            drops.SetActive(true);
+        }
         animator.SetTrigger("Hitted");
         isShine = false;
         gameObject.GetComponent<SpriteRenderer>().material = normalMaterial;
