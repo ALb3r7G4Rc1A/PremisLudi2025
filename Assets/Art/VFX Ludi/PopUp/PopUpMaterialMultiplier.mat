@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PopUpMaterial
-  m_Shader: {fileID: 10760, guid: 0000000000000000f000000000000000, type: 0}
+  m_Name: PopUpMaterialMultiplier
+  m_Shader: {fileID: 4800000, guid: 1a53d73ba70474145b86a3fd87af8e95, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -44,7 +44,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 8400000, guid: 503052637131881418d1278440636bd6, type: 2}
+        m_Texture: {fileID: 8400000, guid: 50e334eb260b7b042bba90a1ac9cef13, type: 2}
         m_Scale: {x: 1, y: 1.5}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -62,27 +62,30 @@ Material:
     m_Ints: []
     m_Floats:
     - _BumpScale: 1
-    - _ColorMask: 15
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+    - _Fill: 1
     - _GlossMapScale: 1
     - _Glossiness: 0.5
     - _GlossyReflections: 1
+    - _Invert: 0.1
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.02
+    - _Saturation: 0.7
+    - _Scale: 2
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
+    - _Speed: 0.6
     - _SrcBlend: 1
-    - _Stencil: 0
-    - _StencilComp: 8
-    - _StencilOp: 0
-    - _StencilReadMask: 255
-    - _StencilWriteMask: 255
     - _UVSec: 0
-    - _UseUIAlphaClip: 0
+    - _Value: 1
+    - _Vertical: 0.536
+    - _WaveAmplitude: 0.035
+    - _WaveFrequency: 1.49
+    - _WaveSpeed: 1.42
     - _ZWrite: 1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}

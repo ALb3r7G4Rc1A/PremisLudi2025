@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
     [Header("Progress")]
     public int correctWordPoints;
     public int actualPoints;
+    private float multiplier;
 
 
     [Header("Audio")]
@@ -52,10 +53,12 @@ public class GameManager : MonoBehaviour
     public GoosScript goosScript;
 
     [Header("PointsBox")]
-    public ParticleSystem popUpBox;
-    public TMP_Text popUpText;
-    public TMP_Text pointsText;
+    public ParticleSystem popUpBoxPoints;
+    public TMP_Text popUpTextPoints;
+    public ParticleSystem popUpBoxMultiplier;
+    public TMP_Text popUpTextMultiplier;
     public Image pointsBox;
+    public TMP_Text pointsText;
     [Header("Strek")]
     private int streak;
     private int badStreak;
@@ -63,6 +66,7 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        multiplier = 1;
         streak = 0;
         badStreak = 0;
         // AudioManager.Instance.Play(levelSongName);  
@@ -207,6 +211,7 @@ public class GameManager : MonoBehaviour
                 goosScript.Attack(false);
                 gestureTest.streak = false;
                 streak = 0;
+                multiplier = 1;
                 badStreak++;
                 wordsInOrder[0].GetComponent<SingleWordScript>().isRemoved = true;
                 wordsInOrder[0].GetComponent<SingleWordScript>().CorrectAnswer(false);
@@ -241,9 +246,15 @@ public class GameManager : MonoBehaviour
     }
     public void AddPoints(int points)
     {
-        popUpText.text = "+" + points;
-
-        popUpBox.Play();
+        if (streak >= 1)
+        {
+            multiplier += 0.2f;
+            popUpTextMultiplier.text = "x" + multiplier;
+            popUpBoxMultiplier.Play();
+            points = (int)(points * multiplier);
+        }
+        popUpTextPoints.text = "+" + points;
+        popUpBoxPoints.Play();
         actualPoints += points;
         pointsBox.GetComponent<Animator>().SetTrigger("WordEnter");
         pointsText.GetComponent<Animator>().SetTrigger("WordEnter");
