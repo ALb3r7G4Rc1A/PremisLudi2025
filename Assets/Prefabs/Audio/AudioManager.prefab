@@ -47,8 +47,8 @@ MonoBehaviour:
   mixer: {fileID: 24100000, guid: 76baa01ac60ace542afa80e9e37e64a1, type: 2}
   music:
   - name: MenuSong
-    clip: {fileID: 8300000, guid: 71790d9af4d49434f84aad9a67c53fd9, type: 3}
-    volume: 0.15
+    clip: {fileID: 8300000, guid: 55b0b80a0368b2045a5893eab4ec706c, type: 3}
+    volume: 0.8
     pitch: 1
     loop: 1
     playOnAwake: 0
