@@ -1,8 +1,6 @@
 using UnityEngine;
 using TMPro;
-using System.Linq;
 using System.Collections.Generic;
-using System;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -246,7 +244,7 @@ public class GameManager : MonoBehaviour
                 {
                     goosScript.Attack(true);
                 }
-                wordsInOrder[0].GetComponent<SingleWordScript>().points = (int)((correctWordPoints - Math.Ceiling(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive)) * (speed / 0.8)) + correctWordPoints;
+                wordsInOrder[0].GetComponent<SingleWordScript>().points = (int)((correctWordPoints - Mathf.Ceil(wordsInOrder[0].GetComponent<SingleWordScript>().timeAlive)) * (speed / 0.8)) + correctWordPoints;
                 wordsInOrder[0].GetComponent<SingleWordScript>().CorrectAnswer(true);
                 wordsInOrder[0].GetComponent<SingleWordScript>().isRemoved = true;
                 wordsInOrder[0].GetComponent<SingleWordScript>().isResolved = true;
@@ -274,7 +272,7 @@ public class GameManager : MonoBehaviour
 
     private void SetSpawnTimer()
     {
-        timer = Math.Abs(wordLimit.position.x - spawner1.position.x) / speed / maxWordsOnScreen;
+        timer = Mathf.Abs(wordLimit.position.x - spawner1.position.x) / speed / maxWordsOnScreen;
     }
 
     private void NextWord()

@@ -502,7 +502,6 @@ GameObject:
   m_Component:
   - component: {fileID: 193272410}
   - component: {fileID: 193272408}
-  - component: {fileID: 193272409}
   m_Layer: 0
   m_Name: PopUpCameraMultiplier
   m_TagString: Untagged
@@ -561,14 +560,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &193272409
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 193272407}
-  m_Enabled: 1
 --- !u!4 &193272410
 Transform:
   m_ObjectHideFlags: 0
@@ -1059,7 +1050,6 @@ GameObject:
   m_Component:
   - component: {fileID: 270690669}
   - component: {fileID: 270690667}
-  - component: {fileID: 270690668}
   m_Layer: 0
   m_Name: PopUpCameraGoodPoints
   m_TagString: Untagged
@@ -1118,14 +1108,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &270690668
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 270690666}
-  m_Enabled: 1
 --- !u!4 &270690669
 Transform:
   m_ObjectHideFlags: 0
@@ -1636,7 +1618,6 @@ GameObject:
   m_Component:
   - component: {fileID: 458395964}
   - component: {fileID: 458395962}
-  - component: {fileID: 458395963}
   m_Layer: 0
   m_Name: PopUpCameraBadPoints
   m_TagString: Untagged
@@ -1695,14 +1676,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &458395963
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 458395961}
-  m_Enabled: 1
 --- !u!4 &458395964
 Transform:
   m_ObjectHideFlags: 0
@@ -1774,7 +1747,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -4047,7 +4020,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1241499135
 RectTransform:
   m_ObjectHideFlags: 0
