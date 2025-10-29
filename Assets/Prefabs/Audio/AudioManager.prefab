@@ -87,3 +87,53 @@ MonoBehaviour:
     spatialBlend: 0
     outputGroup: {fileID: 1945693113348355482, guid: 76baa01ac60ace542afa80e9e37e64a1, type: 2}
     source: {fileID: 0}
+  - name: inkSplash
+    clip: {fileID: 8300000, guid: f2ef87580005a7c40a6e5047c81909e7, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    spatialize: 0
+    spatialBlend: 0
+    outputGroup: {fileID: 1945693113348355482, guid: 76baa01ac60ace542afa80e9e37e64a1, type: 2}
+    source: {fileID: 0}
+  - name: Stroke
+    clip: {fileID: 8300000, guid: d6aae62ac5d36954baca2b1fb04c4584, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    spatialize: 0
+    spatialBlend: 0
+    outputGroup: {fileID: 1945693113348355482, guid: 76baa01ac60ace542afa80e9e37e64a1, type: 2}
+    source: {fileID: 0}
+  - name: MagicWand
+    clip: {fileID: 8300000, guid: 0e6ea0e934132174aad547647aed3637, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    spatialize: 0
+    spatialBlend: 0
+    outputGroup: {fileID: 1945693113348355482, guid: 76baa01ac60ace542afa80e9e37e64a1, type: 2}
+    source: {fileID: 0}
+  - name: MagicPoints
+    clip: {fileID: 8300000, guid: 1c00be5d9df703e4ea5699a656c9235a, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    spatialize: 0
+    spatialBlend: 0
+    outputGroup: {fileID: 1945693113348355482, guid: 76baa01ac60ace542afa80e9e37e64a1, type: 2}
+    source: {fileID: 0}
+  - name: Points
+    clip: {fileID: 8300000, guid: fe582a24296633e45acfc9891f21ca14, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+    playOnAwake: 0
+    spatialize: 0
+    spatialBlend: 0
+    outputGroup: {fileID: 1945693113348355482, guid: 76baa01ac60ace542afa80e9e37e64a1, type: 2}
+    source: {fileID: 0}

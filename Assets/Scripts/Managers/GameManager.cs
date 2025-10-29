@@ -66,10 +66,10 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        multiplier = 1;
+        multiplier = 3;
         streak = 0;
         badStreak = 0;
-        // AudioManager.Instance.Play(levelSongName);  
+        AudioManager.Instance.Play(levelSongName);  
         actualWords = new List<WordsClass>();
         for (int i = 0; i < 15; i++)
         {
@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour
             isWordTaken = true;
             while (isWordTaken)
             {
-                word = UnityEngine.Random.Range(0, 58);
+                word = UnityEngine.Random.Range(0, 57);
                 isWordTaken = false;
                 for (int x = 0; x < i; x++)
                 {
@@ -172,6 +172,7 @@ public class GameManager : MonoBehaviour
     
     public void OptionPress(int option)
     {
+        AudioManager.Instance.Play("Stroke");  
         if (option == 1 && wordsInOrder.Count > 0)
         {
             wordsInOrder[0].GetComponent<TMP_Text>().text = wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass.option1;
@@ -191,8 +192,9 @@ public class GameManager : MonoBehaviour
             {
                 streak++;
                 badStreak = 0;
-                if (streak == 1)
+                if (streak == 5)
                 {
+                    AudioManager.Instance.Play("MagicWand");
                     goosScript.Shine();
                     gestureTest.streak = true;
                 }
@@ -211,7 +213,6 @@ public class GameManager : MonoBehaviour
                 goosScript.Attack(false);
                 gestureTest.streak = false;
                 streak = 0;
-                multiplier = 1;
                 badStreak++;
                 wordsInOrder[0].GetComponent<SingleWordScript>().isRemoved = true;
                 wordsInOrder[0].GetComponent<SingleWordScript>().CorrectAnswer(false);
@@ -242,16 +243,31 @@ public class GameManager : MonoBehaviour
     }
     public void Hitted()
     {
+        if (badStreak >= 3)
+        {
+            FindAnyObjectByType<AudioManager>().mixer.SetFloat("MusicPitch", 0.9f);
+        }
+        else
+        {
+            FindAnyObjectByType<AudioManager>().mixer.SetFloat("MusicPitch", 1f);
+        }        
         goosScript.Hitted(badStreak);
+        AudioManager.Instance.Play("inkSplash");
     }
     public void AddPoints(int points)
     {
-        if (streak >= 1)
+        if (streak >= 5)
         {
-            multiplier += 0.2f;
-            popUpTextMultiplier.text = "x" + multiplier;
+            FindAnyObjectByType<AudioManager>().mixer.SetFloat("MusicPitch", 1.1f);
+            AudioManager.Instance.Play("MagicPoints");
+            popUpTextMultiplier.text = "X3";
             popUpBoxMultiplier.Play();
             points = (int)(points * multiplier);
+        }
+        else
+        {
+            FindAnyObjectByType<AudioManager>().mixer.SetFloat("MusicPitch", 1f);
+            AudioManager.Instance.Play("Points");
         }
         popUpTextPoints.text = "+" + points;
         popUpBoxPoints.Play();

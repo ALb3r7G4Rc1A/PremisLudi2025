@@ -14,6 +14,7 @@ public class GoosScript : MonoBehaviour
     private bool isShineMaterialActive;
     public GameObject rightShadow;
     public GameObject leftShadow;
+    public ParticleSystem stars;
 
     void Start()
     {
@@ -71,6 +72,7 @@ public class GoosScript : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().material = shineMaterial;
         gameObject.GetComponent<SpriteRenderer>().material.SetFloat("_Fill", 0f);
         isShineMaterialActive = true;
+        stars.Play();
         if (isGoosLeft)
         {
             leftShadow.SetActive(true);
@@ -89,6 +91,7 @@ public class GoosScript : MonoBehaviour
         else if (badStreak == 3)
         {
             drops.SetActive(true);
+            FindAnyObjectByType<AudioManager>().music[1].pitch = 0.8f;
         }
         animator.SetTrigger("Hitted");
         gameObject.GetComponent<SpriteRenderer>().material = normalMaterial;
