@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: PointsBoxTextColorFade
+  m_Name: PointsBoxTextColorFadeRed
   serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
@@ -32,7 +32,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.25
-        value: 0.49411765
+        value: 0.62352943
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -41,7 +41,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.75
-        value: 0.49411765
+        value: 0.62352943
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -80,7 +80,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.25
-        value: 0.57254905
+        value: 0.38431373
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -89,7 +89,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.75
-        value: 0.57254905
+        value: 0.38431373
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -128,7 +128,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.25
-        value: 1
+        value: 0.40784314
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -137,7 +137,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.75
-        value: 1
+        value: 0.40784314
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -233,7 +233,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.25
-        value: 0.49411765
+        value: 0.62352943
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -242,7 +242,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.75
-        value: 0.49411765
+        value: 0.62352943
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -281,7 +281,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.25
-        value: 0.57254905
+        value: 0.38431373
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -290,7 +290,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.75
-        value: 0.57254905
+        value: 0.38431373
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -329,7 +329,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.25
-        value: 1
+        value: 0.40784314
         inSlope: 0
         outSlope: 0
         tangentMode: 136
@@ -338,7 +338,7 @@ AnimationClip:
         outWeight: 0.33333334
       - serializedVersion: 3
         time: 0.75
-        value: 1
+        value: 0.40784314
         inSlope: 0
         outSlope: 0
         tangentMode: 136

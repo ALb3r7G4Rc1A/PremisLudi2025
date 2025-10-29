@@ -53,8 +53,10 @@ public class GameManager : MonoBehaviour
     public GoosScript goosScript;
 
     [Header("PointsBox")]
-    public ParticleSystem popUpBoxPoints;
-    public TMP_Text popUpTextPoints;
+    public ParticleSystem popUpBoxGoodPoints;
+    public ParticleSystem popUpBoxBadPoints;
+    public TMP_Text popUpTextGoodPoints;
+    public TMP_Text popUpTextBadPoints;
     public ParticleSystem popUpBoxMultiplier;
     public TMP_Text popUpTextMultiplier;
     public Image pointsBox;
@@ -253,6 +255,14 @@ public class GameManager : MonoBehaviour
         }        
         goosScript.Hitted(badStreak);
         AudioManager.Instance.Play("inkSplash");
+        if (actualPoints > correctWordPoints)
+        {
+            popUpTextBadPoints.text = "-" + correctWordPoints;
+            popUpBoxBadPoints.Play();
+            actualPoints -= correctWordPoints;
+            pointsBox.GetComponent<Animator>().SetTrigger("IncorrectEnter");
+            pointsText.GetComponent<Animator>().SetTrigger("IncorrectEnter");
+        }
     }
     public void AddPoints(int points)
     {
@@ -269,12 +279,10 @@ public class GameManager : MonoBehaviour
             FindAnyObjectByType<AudioManager>().mixer.SetFloat("MusicPitch", 1f);
             AudioManager.Instance.Play("Points");
         }
-        popUpTextPoints.text = "+" + points;
-        popUpBoxPoints.Play();
+        popUpTextGoodPoints.text = "+" + points;
+        popUpBoxGoodPoints.Play();
         actualPoints += points;
-        pointsBox.GetComponent<Animator>().SetTrigger("WordEnter");
-        pointsText.GetComponent<Animator>().SetTrigger("WordEnter");
-        //pointsBox.color = new Color32(126, 146, 255, 255);
-        //pointsText.color = new Color32(126, 146, 255, 255);
+        pointsBox.GetComponent<Animator>().SetTrigger("CorrectEnter");
+        pointsText.GetComponent<Animator>().SetTrigger("CorrectEnter");
     }
 }
