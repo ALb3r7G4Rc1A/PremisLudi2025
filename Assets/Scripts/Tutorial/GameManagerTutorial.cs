@@ -157,6 +157,7 @@ public class GameManagerTutorial : MonoBehaviour
     public void wordStop()
     {
         bafarada.SetActive(true);
+        AudioManager.Instance.Play("Woof");
         if (actualWord == 0 || actualWord == 1)
         {
             textBafarada.text = "Dibuixa l'accent correcte";

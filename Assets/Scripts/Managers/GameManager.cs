@@ -65,9 +65,16 @@ public class GameManager : MonoBehaviour
     private int streak;
     private int badStreak;
     public GestureTest gestureTest;
+    public GameObject bafarada;
+    public TMP_Text textBafarda;
+    private float bafaradaTimer;
+    private bool isReapeat;
+    private bool isReapeatDoubleCheck;
     // Start is called before the first frame update
     void Start()
     {
+        isReapeatDoubleCheck = true;
+        isReapeat = false;
         multiplier = 3;
         streak = 0;
         badStreak = 0;
@@ -126,7 +133,14 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {     
-        pointsText.text = actualPoints + "";
+        if (bafaradaTimer < 0)
+        {
+            bafarada.SetActive(false);
+        }
+        else
+        {
+            bafaradaTimer -= Time.deltaTime;
+        }        pointsText.text = actualPoints + "";
         if (wordsInOrder.Count > 0)
         {
             wordsInOrder[0].GetComponent<TMP_Text>().alpha = Mathf.Lerp(wordsInOrder[0].GetComponent<TMP_Text>().alpha, 1f, Time.deltaTime * 4);
@@ -139,9 +153,8 @@ public class GameManager : MonoBehaviour
 
             randomSpawner = UnityEngine.Random.Range(0, 4);
             selectedSpawner = randomSpawner switch { 0 => spawner1, 1 => spawner2, 2 => spawner3, _ => spawner4 };
-
             selectedWord = Instantiate(textPrefab, selectedSpawner);
-            selectedWord.GetComponent<TMP_Text>().text = actualWords[randomWord].basic;
+            selectedWord.GetComponent<TMP_Text>().text = actualWords[randomWord].basic; 
             selectedWord.GetComponent<SingleWordScript>().wordsClass = actualWords[randomWord];
             if (randomSpawner == 0 || randomSpawner == 1)
             {
@@ -158,6 +171,14 @@ public class GameManager : MonoBehaviour
             {
                 goosScript.Turn(wordsInOrder[0].GetComponent<SingleWordScript>().isGoingLeftWord);
             }
+            if (isReapeat && isReapeatDoubleCheck)
+            {
+                bafarada.SetActive(true);
+                textBafarda.text = "Em sonen les paraules";
+                bafaradaTimer = 1;
+                AudioManager.Instance.Play("Woof");
+                isReapeatDoubleCheck = false;
+            }
         }
         else { time -= Time.deltaTime; }
 
@@ -165,6 +186,7 @@ public class GameManager : MonoBehaviour
         {
             actualWords = missedWords;
             missedWords = new List<WordsClass>();
+            isReapeat = true;
         }
         if (wordsInOrder.Count < 1 && missedWords.Count < 1 && actualWords.Count < 1)
         {
@@ -199,6 +221,26 @@ public class GameManager : MonoBehaviour
                     AudioManager.Instance.Play("MagicWand");
                     goosScript.Shine();
                     gestureTest.streak = true;
+                    bafarada.SetActive(true);
+                    int x = UnityEngine.Random.Range(0, 5);
+                    if (x == 0)
+                    {
+                        textBafarda.text = "Estic Imparable";
+                    }
+                    else if (x == 1)
+                    {
+                        textBafarda.text = "Increïble";
+                    }
+                    else if (x == 2)
+                    {
+                        textBafarda.text = "En Ratxa";
+                    }
+                    else
+                    {
+                        textBafarda.text = "Soc Súper";
+                    }
+                    bafaradaTimer = 1;
+                    AudioManager.Instance.Play("Woof");
                 }
                 else
                 {
