@@ -24,6 +24,11 @@ public class MenuManager : MonoBehaviour
     public void LoadGameScene()
     {
         AudioManager.Instance.Stop(menuSongName);
+        SceneManager.LoadScene(2);
+    }
+    public void LoadTutorialScene()
+    {
+        AudioManager.Instance.Stop(menuSongName);
         SceneManager.LoadScene(1);
     }
 
