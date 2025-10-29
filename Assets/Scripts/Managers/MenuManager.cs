@@ -56,6 +56,7 @@ public class MenuManager : MonoBehaviour
 
     public void LoadMenuScene()
     {
+        Time.timeScale = 1f;
         AudioManager.Instance.Stop(levelSongName);
         SceneManager.LoadScene(0);
     }
