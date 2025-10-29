@@ -58,7 +58,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: LevelSong
     clip: {fileID: 8300000, guid: 78e5b304b4c2d4b49a1bd27049eccd79, type: 3}
-    volume: 0.15
+    volume: 0.2
     pitch: 1
     loop: 1
     playOnAwake: 0
@@ -129,7 +129,7 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Points
     clip: {fileID: 8300000, guid: fe582a24296633e45acfc9891f21ca14, type: 3}
-    volume: 1
+    volume: 0.4
     pitch: 1
     loop: 0
     playOnAwake: 0
