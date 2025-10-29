@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class GoosScript : MonoBehaviour
@@ -23,7 +19,6 @@ public class GoosScript : MonoBehaviour
     }
     void Update()
     {
-        Debug.Log("Drops: " + drops.activeSelf);
         if (isShineMaterialActive && gameObject.GetComponent<SpriteRenderer>().material.GetFloat("_Fill") < 0.99f)
         {
             fillAmount = Mathf.Lerp(gameObject.GetComponent<SpriteRenderer>().material.GetFloat("_Fill"), 1, Time.deltaTime * 4);

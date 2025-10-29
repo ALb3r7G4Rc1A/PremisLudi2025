@@ -40,15 +40,16 @@ public class GestureTest : MonoBehaviour
 
         originalColor = lineColor;
         lineRenderer.startColor = originalColor;
-        lineRenderer.endColor = originalColor;     
+        lineRenderer.endColor = originalColor;
 
         // Carregar tots els gestos .xml del projecte
-        string[] gestureFiles = Directory.GetFiles(Application.dataPath, "*.xml", SearchOption.AllDirectories);
+        string gesturePath = Application.streamingAssetsPath;
+        string[] gestureFiles = Directory.GetFiles(gesturePath, "*.xml", SearchOption.AllDirectories);
         trainingSet = new Gesture[gestureFiles.Length];
         for (int i = 0; i < gestureFiles.Length; i++)
             trainingSet[i] = GestureIO.ReadGestureFromFile(gestureFiles[i]);
 
-        //Debug.Log($"Gestos carregats: {trainingSet.Length}");
+        Debug.Log($"Gestos carregats: {trainingSet.Length}");
     }
 
     void Update()
