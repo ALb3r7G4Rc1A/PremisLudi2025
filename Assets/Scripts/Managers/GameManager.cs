@@ -78,7 +78,7 @@ public class GameManager : MonoBehaviour
             isWordTaken = true;
             while (isWordTaken)
             {
-                word = UnityEngine.Random.Range(0, 117);
+                word = UnityEngine.Random.Range(0, 118);
                 isWordTaken = false;
                 for (int x = 0; x < i; x++)
                 {

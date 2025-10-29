@@ -12,8 +12,8 @@ public class WordsList : MonoBehaviour
     {
         eazy = new WordsClass[] {
             new WordsClass("català",    "cata<b><u>la</b></u>",     "català",     "catala",     "catalá"),
+            new WordsClass("tres",      "<b><u>tres</b></u>",       "très",       "tres",       "trés"),
             new WordsClass("pera",      "<b><u>pe</b></u>ra",       "pèra",       "pera",       "péra"),
-            //new WordsClass("galàxia",   "ga<b><u>la</b></u>xia",    "galàxia",    "galaxia",    "galáxia"),
             new WordsClass("ànima",     "<b><u>a</b></u>nima",      "ànima",      "anima",      "ánima"),
             new WordsClass("camió",     "ca<b><u>mio</b></u>",      "camiò",      "camio",      "camió"),
             new WordsClass("aquí",      "a<b><u>qui</b></u>",       "aquì",       "aqui",       "aquí"),
@@ -30,7 +30,6 @@ public class WordsList : MonoBehaviour
             new WordsClass("estómac",   "es<b><u>to</u></b>mac",    "estòmac",    "estomac",    "estómac"),
             new WordsClass("fotògraf",  "fo<b><u>to</u></b>graf",   "fotògraf",   "fotograf",   "fotógraf"),
             new WordsClass("rodó",      "ro<b><u>do</u></b>",       "rodò",       "rodo",       "rodó"),
-            //new WordsClass("palau",     "pa<b><u>lau</u></b>",      "palàu",      "palau",      "paláu"),
             new WordsClass("galeta",    "ga<b><u>le</u></b>ta",     "galèta",     "galeta",     "galéta"),
             new WordsClass("cadira",    "ca<b><u>di</u></b>ra",     "cadìra",     "cadira",     "cadíra"),
             new WordsClass("córrer",    "<b><u>cor</u></b>rer",     "còrrer",     "correr",     "córrer"),
@@ -99,7 +98,6 @@ public class WordsList : MonoBehaviour
             new WordsClass("altra",     "<b><u>al</u></b>tra",      "àltra",      "altra",      "áltra"),
             new WordsClass("terra",     "<b><u>ter</u></b>ra",      "tèrra",      "terra",      "térra"),
             new WordsClass("antic",     "an<b><u>tic</u></b>",      "antìc",      "antic",      "antíc"),
-            //new WordsClass("tenia",     "te<b><u>ni</u></b>a",      "tenìa",      "tenia",      "tenía"),
             new WordsClass("zona",      "<b><u>zo</u></b>na",       "zòna",       "zona",       "zóna"),
             new WordsClass("obres",     "<b><u>o</u></b>bres",      "òbres",      "obres",      "óbres"),
             new WordsClass("estava",    "es<b><u>ta</u></b>va",     "estàva",     "estava",     "estáva"),
@@ -107,7 +105,6 @@ public class WordsList : MonoBehaviour
             new WordsClass("ara",       "<b><u>a</u></b>ra",        "àra",        "ara",        "ára"),
             new WordsClass("havien",    "ha<b><u>vi</u></b>en",     "havìen",     "havien",     "havíen"),
             new WordsClass("començar",  "co<b><u>men</u></b>çar",   "comènçar",   "començar",   "coménçar"),
-            //new WordsClass("història",  "his<b><u>to</u></b>ria",   "història",   "historia",   "história"),
             new WordsClass("morir",     "mo<b><u>rir</u></b>",      "mòrir",      "morir",      "mórir"),
             new WordsClass("nacional",  "nacio<b><u>nal</u></b>",   "nacionàl",   "nacional",   "nacionál"),
             new WordsClass("final",     "<b><u>fi</u></b>nal",      "fìnal",      "final",      "fínal"),

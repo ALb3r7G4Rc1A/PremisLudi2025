@@ -6,6 +6,7 @@ TagManager:
   tags:
   - WordLimit
   - PointsBox
+  - WordStop
   layers:
   - Default
   - TransparentFX

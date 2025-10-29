@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 
 [RequireComponent(typeof(LineRenderer))]
-public class GestureTest : MonoBehaviour
+public class GestureTestTutorial : MonoBehaviour
 {
     private List<Point> points = new List<Point>();
     private Gesture[] trainingSet;
@@ -23,7 +23,7 @@ public class GestureTest : MonoBehaviour
     public float recognitionThreshold = 0.5f; //Marge de detecció de la figura
 
     [Header("Referència al GameManager")]
-    public GameManager gameManager;
+    public GameManagerTutorial gameManager;
 
     private string recognized;
 
@@ -33,7 +33,7 @@ public class GestureTest : MonoBehaviour
         lineRenderer = GetComponent<LineRenderer>();
         originalMaterial = lineRenderer.material;
         lineRenderer.positionCount = 0;
-        lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
+        //lineRenderer.material = new Material(Shader.Find("Sprites/Default"));
         lineRenderer.startWidth = lineWidth;
         lineRenderer.endWidth = lineWidth;
         lineRenderer.numCapVertices = 10;
