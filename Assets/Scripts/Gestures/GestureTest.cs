@@ -76,7 +76,7 @@ public class GestureTest : MonoBehaviour
         }
 
         // Dibuixar mentre es manté el clic
-        if (isDrawing && Input.GetMouseButton(0))
+        if (isDrawing && (Input.GetMouseButton(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)))
         {
             Vector2 mousePos = Input.mousePosition;
             points.Add(new Point(mousePos.x, -mousePos.y, 0));
@@ -87,7 +87,7 @@ public class GestureTest : MonoBehaviour
         }
 
         // Quan deixem anar el clic, reconeixem el gest
-        if (isDrawing && Input.GetMouseButtonUp(0))
+        if (isDrawing && (Input.GetMouseButtonUp(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)))
         {
             isDrawing = false;
             Gesture candidate = new Gesture(points.ToArray());
