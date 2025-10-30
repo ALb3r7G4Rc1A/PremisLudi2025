@@ -44,7 +44,7 @@ public class GameManagerTutorial : MonoBehaviour
         AudioManager.Instance.Play(levelSongName);
         actualWords = new List<WordsClass>();
         actualWords.Add(wordsList.eazy[0]);
-        actualWords.Add(wordsList.hard[10]);
+        actualWords.Add(wordsList.hard[0]);
         actualWords.Add(wordsList.eazy[1]);
         actualWord = 0;
         time = -1;

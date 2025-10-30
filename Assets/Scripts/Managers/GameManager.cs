@@ -2,10 +2,10 @@ using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-
     [Header("Spawners")]
     public Transform spawner1;
     public Transform spawner2;
@@ -59,6 +59,8 @@ public class GameManager : MonoBehaviour
     public TMP_Text popUpTextMultiplier;
     public Image pointsBox;
     public TMP_Text pointsText;
+    public GameObject endPanel;
+    public TMP_Text endPointsText;
     [Header("Strek")]
     private int streak;
     private int badStreak;
@@ -68,6 +70,7 @@ public class GameManager : MonoBehaviour
     private float bafaradaTimer;
     private bool isReapeat;
     private bool isReapeatDoubleCheck;
+    private bool isLastWord;
 
     [Header("Fade")]
     public GameObject fadeRainbow;
@@ -75,6 +78,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        isLastWord = false;
+        endPanel.SetActive(false);
         fadeDrop.SetActive(false);
         fadeRainbow.SetActive(false);
         isReapeatDoubleCheck = true;
@@ -192,10 +197,6 @@ public class GameManager : MonoBehaviour
             missedWords = new List<WordsClass>();
             isReapeat = true;
         }
-        if (wordsInOrder.Count < 1 && missedWords.Count < 1 && actualWords.Count < 1)
-        {
-            Debug.Log("END");
-        }
     }
     
     public void OptionPress(int option)
@@ -256,6 +257,10 @@ public class GameManager : MonoBehaviour
                 wordsInOrder[0].GetComponent<SingleWordScript>().CorrectAnswer(true);
                 wordsInOrder[0].GetComponent<SingleWordScript>().isRemoved = true;
                 wordsInOrder[0].GetComponent<SingleWordScript>().isResolved = true;
+                if (wordsInOrder.Count == 1 && missedWords.Count < 1 && actualWords.Count < 1)
+                {
+                    isLastWord = true;
+                }
                 NextWord();
             }
             else
@@ -334,5 +339,17 @@ public class GameManager : MonoBehaviour
         actualPoints += points;
         pointsBox.GetComponent<Animator>().SetTrigger("CorrectEnter");
         pointsText.GetComponent<Animator>().SetTrigger("CorrectEnter");
+        if (isLastWord)
+        {
+            Debug.Log("END");
+            endPointsText.text = "" + actualPoints;
+            endPanel.SetActive(true);
+            goosScript.gameObject.transform.position = new Vector3(2000,0,0);
+        }
+    }
+    public void BackToMenu()
+    {
+        AudioManager.Instance.Stop(levelSongName);
+        SceneManager.LoadScene(0);
     }
 }

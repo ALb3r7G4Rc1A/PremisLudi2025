@@ -195,6 +195,6 @@ public class GestureTest : MonoBehaviour
         {
             lineRenderer.startColor = originalColor;
             lineRenderer.endColor = originalColor;
-        }        
+        }
     }
 }
