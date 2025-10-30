@@ -96,4 +96,13 @@ public class AudioManager : MonoBehaviour
         Debug.LogWarning("No se encontró el AudioSource para: " + name);
         return null;
     }
+
+    public bool IsPlaying(string name)
+    {
+        if (soundDictionary.TryGetValue(name, out var s))
+            return s.source.isPlaying;
+
+        Debug.LogWarning("No se encontró el sonido: " + name);
+        return false;
+    }
 }

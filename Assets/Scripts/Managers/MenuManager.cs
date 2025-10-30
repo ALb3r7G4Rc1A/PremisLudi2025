@@ -15,8 +15,12 @@ public class MenuManager : MonoBehaviour
     {
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
-            AudioManager.Instance.Play(menuSongName);
-        }  
+            if (!AudioManager.Instance.IsPlaying(menuSongName))
+            {
+                AudioManager.Instance.Play(menuSongName);
+            }
+        }
+
     }
 
     public void LoadGameScene()

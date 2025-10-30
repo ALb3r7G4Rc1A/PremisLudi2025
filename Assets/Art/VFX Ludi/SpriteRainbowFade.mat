@@ -75,14 +75,14 @@ Material:
     - _OcclusionStrength: 1
     - _Parallax: 0.02
     - _Saturation: 0.7
-    - _Scale: 6.68
+    - _Scale: 2.1
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _Speed: 1
     - _SrcBlend: 1
     - _UVSec: 0
     - _Value: 1
-    - _Vertical: 0.81
+    - _Vertical: 0.398
     - _WaveAmplitude: 0.035
     - _WaveFrequency: 10
     - _WaveSpeed: -1.47
