@@ -138,7 +138,7 @@ public class GestureTest : MonoBehaviour
                 {
                     switch (recognized)
                     {
-                        case "accent_obert":
+                        case "accent obert":
                             gameManager.OptionPress(1);
                             break;
 
@@ -146,7 +146,7 @@ public class GestureTest : MonoBehaviour
                             gameManager.OptionPress(2);
                             break;
 
-                        case "accent_tancat":
+                        case "accent tancat":
                             gameManager.OptionPress(3);
                             break;
 
