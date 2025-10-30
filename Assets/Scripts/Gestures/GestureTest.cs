@@ -2,6 +2,9 @@ using UnityEngine;
 using PDollarGestureRecognizer;
 using System.Collections.Generic;
 using System.IO;
+using UnityEngine.Networking;
+using System.Collections;
+using TMPro;
 
 [RequireComponent(typeof(LineRenderer))]
 public class GestureTest : MonoBehaviour
@@ -42,14 +45,46 @@ public class GestureTest : MonoBehaviour
         lineRenderer.startColor = originalColor;
         lineRenderer.endColor = originalColor;
 
-        // Carregar tots els gestos .xml del projecte
+        StartCoroutine(LoadGestures());
+    }
+
+    private IEnumerator LoadGestures()
+    {
         string gesturePath = Application.streamingAssetsPath;
-        string[] gestureFiles = Directory.GetFiles(gesturePath, "*.xml", SearchOption.AllDirectories);
+        string[] gestureFiles;
+
+        #if UNITY_WEBGL && !UNITY_EDITOR
+        // WebGL – manually list files (they must be inside Assets/StreamingAssets)
+        gestureFiles = new string[] { "AccentObert.xml", "AccentTancat.xml", "Circle.xml", "Punt.xml" };
+
         trainingSet = new Gesture[gestureFiles.Length];
+
         for (int i = 0; i < gestureFiles.Length; i++)
-            trainingSet[i] = GestureIO.ReadGestureFromFile(gestureFiles[i]);
+        {
+            string path = Path.Combine(gesturePath, gestureFiles[i]);
+            UnityWebRequest www = UnityWebRequest.Get(path);
+            yield return www.SendWebRequest();
+            if (www.result == UnityWebRequest.Result.Success)
+            {
+                string xml = www.downloadHandler.text;
+                trainingSet[i] = GestureIO.ReadGestureFromXML(xml); // Read from XML text
+            }
+            else
+            {
+            }
+        }
+        #else
+                // Editor / standalone
+                gestureFiles = Directory.GetFiles(gesturePath, "*.xml", SearchOption.AllDirectories);
+                trainingSet = new Gesture[gestureFiles.Length];
+                for (int i = 0; i < gestureFiles.Length; i++)
+                {
+                    trainingSet[i] = GestureIO.ReadGestureFromFile(gestureFiles[i]);
+                }
+#endif
 
         Debug.Log($"Gestos carregats: {trainingSet.Length}");
+        yield break;
     }
 
     void Update()
@@ -87,14 +122,13 @@ public class GestureTest : MonoBehaviour
         }
 
         // Quan deixem anar el clic, reconeixem el gest
-        if (isDrawing && (Input.GetMouseButtonUp(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Canceled)))
+        if (isDrawing && (Input.GetMouseButtonUp(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)))
         {
             isDrawing = false;
             Gesture candidate = new Gesture(points.ToArray());
             Result result = PointCloudRecognizer.Classify(candidate, trainingSet);
 
             recognized = result.GestureClass;
-
             if (result.Score >= recognitionThreshold && result.Score != 1)
             {
                 //Debug.Log($"Gest reconegut: {recognized} (Score: {result.Score:F2})");
@@ -104,7 +138,7 @@ public class GestureTest : MonoBehaviour
                 {
                     switch (recognized)
                     {
-                        case "accent obert":
+                        case "accent_obert":
                             gameManager.OptionPress(1);
                             break;
 
@@ -112,7 +146,7 @@ public class GestureTest : MonoBehaviour
                             gameManager.OptionPress(2);
                             break;
 
-                        case "accent tancat":
+                        case "accent_tancat":
                             gameManager.OptionPress(3);
                             break;
 

@@ -65,6 +65,7 @@ namespace PDollarGestureRecognizer
     /// Implements a gesture as a cloud of points (i.e., an unordered set of points).
     /// Gestures are normalized with respect to scale, translated to origin, and resampled into a fixed number of 32 points.
     /// </summary>
+    [Serializable]
     public class Gesture
     {
         public Point[] Points = null;            // gesture points (normalized)
@@ -78,12 +79,13 @@ namespace PDollarGestureRecognizer
         public Gesture(Point[] points, string gestureName = "")
         {
             this.Name = gestureName;
-            
+
             // normalizes the array of points with respect to scale, origin, and number of points
             this.Points = Scale(points);
             this.Points = TranslateTo(Points, Centroid(Points));
             this.Points = Resample(Points, SAMPLING_RESOLUTION);
         }
+        public Gesture() { }
 
         #region gesture pre-processing steps: scale normalization, translation to origin, and resampling
 
