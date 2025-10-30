@@ -515,7 +515,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Com jugar?
+  m_text: '- Com jugar?'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 15ac7956297bbca419ba99e09fe44791, type: 2}
   m_sharedMaterial: {fileID: -3332399793262826328, guid: 15ac7956297bbca419ba99e09fe44791, type: 2}
@@ -1296,7 +1296,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 47f6e758bb615ac4ead779b780cfd2d2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e87b3c0ce92faf444a43baac4ab6682a, type: 3}
   m_Color: {r: 0.99871165, g: 1, b: 0.9669811, a: 0.43137255}
   m_FlipX: 0
   m_FlipY: 0
@@ -1345,7 +1345,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 8.66}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -9, y: 110}
+  m_AnchoredPosition: {x: -66, y: 81}
   m_SizeDelta: {x: 356.87, y: 75.23}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &278859216
@@ -3388,8 +3388,8 @@ GameObject:
   - component: {fileID: 1017034390}
   - component: {fileID: 1017034389}
   - component: {fileID: 1017034388}
-  - component: {fileID: 1017034387}
   - component: {fileID: 1017034391}
+  - component: {fileID: 1017034392}
   m_Layer: 5
   m_Name: ResumeButton
   m_TagString: Untagged
@@ -3406,37 +3406,16 @@ RectTransform:
   m_GameObject: {fileID: 1017034385}
   m_LocalRotation: {x: 0, y: 0, z: 0.0755008, w: 0.9971458}
   m_LocalPosition: {x: 0, y: 0, z: 0.0002062347}
-  m_LocalScale: {x: 0.4739606, y: 0.4739606, z: 0.47396064}
+  m_LocalScale: {x: 0.5813991, y: 0.5813991, z: 0.5813991}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1099176300}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 8.66}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 243, y: 311}
+  m_AnchoredPosition: {x: 239, y: 306}
   m_SizeDelta: {x: 228, y: 181}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!95 &1017034387
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1017034385}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: fae9b6d932ae40541b510dd500337774, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 2
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &1017034388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3585,7 +3564,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5b8ce5b14e60e5840bd3444838d191ff, type: 3}
+  m_Sprite: {fileID: 21300000, guid: b337b49957c20544ab65532b188ff9ca, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -3617,6 +3596,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hoverSoundName: HoverButton
   clickSoundName: ClickButton
+--- !u!95 &1017034392
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1017034385}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7b624fe0925575f4d9cd60172e6ed543, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 2
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1021932759
 GameObject:
   m_ObjectHideFlags: 0
@@ -3706,7 +3706,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 47f6e758bb615ac4ead779b780cfd2d2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e87b3c0ce92faf444a43baac4ab6682a, type: 3}
   m_Color: {r: 0.99871165, g: 1, b: 0.9669811, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -14903,7 +14903,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Men\xFA del joc"
+  m_text: "- Tornar al men\xFA"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 15ac7956297bbca419ba99e09fe44791, type: 2}
   m_sharedMaterial: {fileID: -3332399793262826328, guid: 15ac7956297bbca419ba99e09fe44791, type: 2}
@@ -14930,8 +14930,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 79
-  m_fontSizeBase: 79
+  m_fontSize: 75
+  m_fontSizeBase: 75
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -14966,7 +14966,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 1.7236778, y: 0, z: -2.5368958, w: 0}
+  m_margin: {x: 1.7236778, y: 0, z: -130.40565, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -20373,9 +20373,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Si
-
-'
+  m_text: "S\xED\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 15ac7956297bbca419ba99e09fe44791, type: 2}
   m_sharedMaterial: {fileID: -3332399793262826328, guid: 15ac7956297bbca419ba99e09fe44791, type: 2}
@@ -21655,7 +21653,7 @@ RectTransform:
   m_GameObject: {fileID: 2002012461}
   m_LocalRotation: {x: 0, y: 0, z: 0.0755008, w: 0.9971458}
   m_LocalPosition: {x: 0, y: 0, z: -9.999756}
-  m_LocalScale: {x: 1.1838, y: 1.1838, z: 1.1838}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1549663802}
@@ -21664,7 +21662,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 8.66}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 50.9034, y: -200.15881}
+  m_AnchoredPosition: {x: -36, y: -200.15881}
   m_SizeDelta: {x: 356.87, y: 75.23}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2002012463

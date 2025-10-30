@@ -58,4 +58,8 @@ public class MenuManager : MonoBehaviour
         AudioManager.Instance.Stop(levelSongName);
         SceneManager.LoadScene(0);
     }
+    public void LoadCreditsScene()
+    {
+        SceneManager.LoadScene(3);
+    }
 }
