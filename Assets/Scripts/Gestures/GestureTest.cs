@@ -87,7 +87,7 @@ public class GestureTest : MonoBehaviour
         }
 
         // Quan deixem anar el clic, reconeixem el gest
-        if (isDrawing && (Input.GetMouseButtonUp(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)))
+        if (isDrawing && (Input.GetMouseButtonUp(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Canceled)))
         {
             isDrawing = false;
             Gesture candidate = new Gesture(points.ToArray());
