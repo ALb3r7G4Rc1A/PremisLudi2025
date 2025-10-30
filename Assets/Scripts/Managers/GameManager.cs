@@ -229,16 +229,12 @@ public class GameManager : MonoBehaviour
                     goosScript.Shine();
                     gestureTest.streak = true;
                     bafarada.SetActive(true);
-                    int x = UnityEngine.Random.Range(0, 5);
+                    int x = UnityEngine.Random.Range(0,4);
                     if (x == 0)
                     {
                         textBafarda.text = "Estic Imparable";
                     }
                     else if (x == 1)
-                    {
-                        textBafarda.text = "Increïble";
-                    }
-                    else if (x == 2)
                     {
                         textBafarda.text = "En Ratxa";
                     }
