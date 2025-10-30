@@ -2567,12 +2567,20 @@ PrefabInstance:
       value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 8283752382177453147, guid: 2ca9a69b560a38040bde72eb1c700a20, type: 3}
+      propertyPath: sfx.Array.data[6].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 7a589172475d334438bd6180929c1b92, type: 3}
+    - target: {fileID: 8283752382177453147, guid: 2ca9a69b560a38040bde72eb1c700a20, type: 3}
       propertyPath: sfx.Array.data[7].clip
       value: 
       objectReference: {fileID: 8300000, guid: fc1f6cc2ad451e949821705081e82bd8, type: 3}
     - target: {fileID: 8283752382177453147, guid: 2ca9a69b560a38040bde72eb1c700a20, type: 3}
       propertyPath: sfx.Array.data[7].name
       value: Woof
+      objectReference: {fileID: 0}
+    - target: {fileID: 8283752382177453147, guid: 2ca9a69b560a38040bde72eb1c700a20, type: 3}
+      propertyPath: sfx.Array.data[6].pitch
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8283752382177453147, guid: 2ca9a69b560a38040bde72eb1c700a20, type: 3}
       propertyPath: sfx.Array.data[7].pitch

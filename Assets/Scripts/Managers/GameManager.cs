@@ -68,9 +68,15 @@ public class GameManager : MonoBehaviour
     private float bafaradaTimer;
     private bool isReapeat;
     private bool isReapeatDoubleCheck;
+
+    [Header("Fade")]
+    public GameObject fadeRainbow;
+    public GameObject fadeDrop;
     // Start is called before the first frame update
     void Start()
     {
+        fadeDrop.SetActive(false);
+        fadeRainbow.SetActive(false);
         isReapeatDoubleCheck = true;
         isReapeat = false;
         multiplier = 3;
@@ -212,10 +218,12 @@ public class GameManager : MonoBehaviour
         {
             if (wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass.isCorrectAccent(option))
             {
+                fadeDrop.SetActive(false);
                 streak++;
                 badStreak = 0;
                 if (streak == 5)
                 {
+                    fadeRainbow.SetActive(true);
                     AudioManager.Instance.Play("MagicWand");
                     goosScript.Shine();
                     gestureTest.streak = true;
@@ -253,9 +261,6 @@ public class GameManager : MonoBehaviour
             else
             {
                 goosScript.Attack(false);
-                gestureTest.streak = false;
-                streak = 0;
-                badStreak++;
                 wordsInOrder[0].GetComponent<SingleWordScript>().isRemoved = true;
                 wordsInOrder[0].GetComponent<SingleWordScript>().CorrectAnswer(false);
                 missedWords.Add(wordsInOrder[0].GetComponent<SingleWordScript>().wordsClass);
@@ -285,8 +290,13 @@ public class GameManager : MonoBehaviour
     }
     public void Hitted()
     {
+        streak = 0;
+        badStreak++;
+        fadeRainbow.SetActive(false);
+        gestureTest.streak = false;
         if (badStreak >= 3)
         {
+            fadeDrop.SetActive(true);
             FindAnyObjectByType<AudioManager>().mixer.SetFloat("MusicPitch", 0.9f);
         }
         else
