@@ -1,6 +1,7 @@
 using UnityEngine;
 using TMPro;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 
 public class GameManagerTutorial : MonoBehaviour
 {
@@ -174,5 +175,10 @@ public class GameManagerTutorial : MonoBehaviour
         {
             textBafarada.text = "Dibuixa un cercle";
         } */
+    }
+    public void BackToMenu()
+    {
+        AudioManager.Instance.Stop(levelSongName);
+        SceneManager.LoadScene(0);
     }
 }
