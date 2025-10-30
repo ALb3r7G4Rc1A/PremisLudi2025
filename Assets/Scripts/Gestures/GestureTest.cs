@@ -40,15 +40,16 @@ public class GestureTest : MonoBehaviour
 
         originalColor = lineColor;
         lineRenderer.startColor = originalColor;
-        lineRenderer.endColor = originalColor;     
+        lineRenderer.endColor = originalColor;
 
         // Carregar tots els gestos .xml del projecte
-        string[] gestureFiles = Directory.GetFiles(Application.dataPath, "*.xml", SearchOption.AllDirectories);
+        string gesturePath = Application.streamingAssetsPath;
+        string[] gestureFiles = Directory.GetFiles(gesturePath, "*.xml", SearchOption.AllDirectories);
         trainingSet = new Gesture[gestureFiles.Length];
         for (int i = 0; i < gestureFiles.Length; i++)
             trainingSet[i] = GestureIO.ReadGestureFromFile(gestureFiles[i]);
 
-        //Debug.Log($"Gestos carregats: {trainingSet.Length}");
+        Debug.Log($"Gestos carregats: {trainingSet.Length}");
     }
 
     void Update()
@@ -75,7 +76,7 @@ public class GestureTest : MonoBehaviour
         }
 
         // Dibuixar mentre es manté el clic
-        if (isDrawing && Input.GetMouseButton(0))
+        if (isDrawing && (Input.GetMouseButton(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved)))
         {
             Vector2 mousePos = Input.mousePosition;
             points.Add(new Point(mousePos.x, -mousePos.y, 0));
@@ -86,7 +87,7 @@ public class GestureTest : MonoBehaviour
         }
 
         // Quan deixem anar el clic, reconeixem el gest
-        if (isDrawing && Input.GetMouseButtonUp(0))
+        if (isDrawing && (Input.GetMouseButtonUp(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Ended)))
         {
             isDrawing = false;
             Gesture candidate = new Gesture(points.ToArray());
