@@ -94,5 +94,47 @@ namespace PDollarGestureRecognizer
                 sw.WriteLine("</Gesture>");
             }
         }
+
+        public static Gesture ReadGestureFromXML(string xmlText)
+        {
+            List<Point> points = new List<Point>();
+            XmlTextReader xmlReader = null;
+            int currentStrokeIndex = -1;
+            string gestureName = "";
+
+            try
+            {
+                xmlReader = new XmlTextReader(new System.IO.StringReader(xmlText));
+
+                while (xmlReader.Read())
+                {
+                    if (xmlReader.NodeType != XmlNodeType.Element) continue;
+
+                    switch (xmlReader.Name)
+                    {
+                        case "Gesture":
+                            gestureName = xmlReader["Name"] ?? "";
+                            break;
+
+                        case "Stroke":
+                            currentStrokeIndex++;
+                            break;
+
+                        case "Point":
+                            float x = float.Parse(xmlReader["X"] ?? "0");
+                            float y = float.Parse(xmlReader["Y"] ?? "0");
+                            points.Add(new Point(x, y, currentStrokeIndex));
+                            break;
+                    }
+                }
+            }
+            finally
+            {
+                if (xmlReader != null)
+                    xmlReader.Close();
+            }
+
+            return new Gesture(points.ToArray(), gestureName);
+        }
     }
 }
